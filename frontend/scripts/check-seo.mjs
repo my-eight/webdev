@@ -29,7 +29,9 @@ async function checkMode(mode) {
     cwd: root,
     env: { ...process.env, HOST: '127.0.0.1', PORT: String(port), NITRO_HOST: '127.0.0.1', NITRO_PORT: String(port),
       NODE_ENV: 'production', NUXT_PUBLIC_SITE_URL: isPublic ? origin : '', NUXT_PUBLIC_INDEXABLE: String(isPublic),
-      NUXT_PUBLIC_SLAVA_TELEGRAM: '', NUXT_PUBLIC_SLAVA_EMAIL: '', NUXT_PUBLIC_ERIN_TELEGRAM: '', NUXT_PUBLIC_ERIN_EMAIL: '',
+      NUXT_PUBLIC_SLAVA_PHONE: isPublic ? '+7 961 529 83 37' : '',
+      NUXT_PUBLIC_SLAVA_TELEGRAM: isPublic ? 'my8cloud' : '', NUXT_PUBLIC_SLAVA_EMAIL: isPublic ? 'mybusinessacc8@gmail.com' : '',
+      NUXT_PUBLIC_ERIN_PHONE: '', NUXT_PUBLIC_ERIN_TELEGRAM: '', NUXT_PUBLIC_ERIN_EMAIL: '',
     },
     stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true,
   })
@@ -65,6 +67,13 @@ async function checkMode(mode) {
       assert.match(html, /<main\b/)
       assert.match(html, /id="contact"/)
       assert.match(html, path === '/design' ? /Эрин/ : /Слава/)
+      const contactSection = html.match(/<section\b[^>]*id="contact"[\s\S]*?<\/section>/)?.[0] || ''
+      const slavaLinks = ['tel:+79615298337', 'https://t.me/my8cloud', 'mailto:mybusinessacc8@gmail.com']
+      for (const href of slavaLinks) assert.equal(contactSection.includes(`href="${href}"`), isPublic && path !== '/design', `Contact ${href} on ${path}`)
+      if (isPublic && path !== '/design') {
+        assert.ok(contactSection.includes('+7 961 529 83 37') && contactSection.includes('@my8cloud') && contactSection.includes('mybusinessacc8@gmail.com'))
+        assert.ok(!contactSection.includes('Контакты появятся'))
+      }
       assert.equal(meta(head, 'og:title'), title)
       assert.equal(meta(head, 'og:description'), description)
       assert.equal(meta(head, 'og:locale'), 'ru_RU')
@@ -93,6 +102,13 @@ async function checkMode(mode) {
           assert.ok(service && person)
           assert.equal(service.provider['@id'], person['@id'])
           assert.equal(person.name, path === '/design' ? 'Эрин Вишневская' : 'Слава')
+          if (path !== '/design') {
+            assert.equal(person.telephone, '+79615298337')
+            assert.equal(person.email, 'mybusinessacc8@gmail.com')
+            assert.ok(person.sameAs.includes('https://t.me/my8cloud'))
+          } else {
+            assert.ok(!person.telephone && !person.email)
+          }
           assert.ok(graph.some(item => item['@type'] === 'BreadcrumbList'))
         }
         const queried = await (await fetch(base + path + '?utm_source=check')).text()

@@ -1,6 +1,7 @@
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { allowsIndexing, publicPath, publicPaths } from './shared/utils/site'
+import { publicContacts } from './shared/config/contacts'
 
 const isGitHubPages = process.env.NITRO_PRESET === 'github_pages'
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
@@ -33,10 +34,12 @@ export default defineNuxtConfig({
       siteUrl: '',
       indexable: false,
       trailingSlash: isGitHubPages,
-      slavaTelegram: '',
-      slavaEmail: '',
-      erinTelegram: '',
-      erinEmail: '',
+      slavaPhone: publicContacts.slava.phone,
+      slavaTelegram: publicContacts.slava.telegram,
+      slavaEmail: publicContacts.slava.email,
+      erinPhone: publicContacts.erin.phone,
+      erinTelegram: publicContacts.erin.telegram,
+      erinEmail: publicContacts.erin.email,
     },
   },
   typescript: { strict: true },

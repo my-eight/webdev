@@ -5,12 +5,13 @@ interface PageSeoOptions {
   title: string
   description: string
   path: string
-  person?: { name: string; id: string; role: string; portfolio?: string }
+  person?: { name: string; id: 'slava' | 'erin'; role: string; portfolio?: string }
   serviceName?: string
 }
 
 export function usePageSeo(options: PageSeoOptions) {
   const runtime = useRuntimeConfig()
+  const contacts = options.person ? usePersonContacts(options.person.id) : undefined
   const config = runtime.public
   const origin = siteOrigin(config.siteUrl)
   const root = siteRoot(config.siteUrl, runtime.app.baseURL)
@@ -45,9 +46,13 @@ export function usePageSeo(options: PageSeoOptions) {
       ...(options.person ? { about: { '@id': `${root}#${options.person.id}` } } : {}),
     })
     if (options.person) {
+      const contact = contacts?.value
+      const sameAs = [options.person.portfolio, contact?.telegram].filter((value): value is string => Boolean(value))
       graph.push({ '@type': 'Person', '@id': `${root}#${options.person.id}`, name: options.person.name,
         jobTitle: options.person.role,
-        ...(options.person.portfolio ? { sameAs: [options.person.portfolio] } : {}),
+        ...(contact?.phone ? { telephone: contact.phone.slice('tel:'.length) } : {}),
+        ...(contact?.email ? { email: contact.emailLabel } : {}),
+        ...(sameAs.length ? { sameAs } : {}),
       })
     }
     if (options.serviceName && options.person) {

@@ -36,3 +36,9 @@ export function emailLink(value: unknown): string | undefined {
   return typeof value === 'string' && /^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(value.trim())
     ? `mailto:${value.trim()}` : undefined
 }
+
+export function phoneLink(value: unknown): string | undefined {
+  if (typeof value !== 'string' || !/^\+[\d\s()-]+$/.test(value.trim())) return
+  const number = value.replace(/[\s()-]/g, '')
+  return /^\+[1-9]\d{7,14}$/.test(number) ? `tel:${number}` : undefined
+}
