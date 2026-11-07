@@ -76,9 +76,8 @@
   88%, 100% { stroke-dashoffset: -100; opacity: 0; }
 }
 @keyframes study-stock-hub-receive {
-  0%, 16%, 24%, 46%, 54%, 100% { opacity: 1; filter: drop-shadow(0 0 0 transparent); }
-  18%, 48% { opacity: .9; filter: drop-shadow(0 0 7px currentColor); }
-  20%, 50% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+  0%, 16%, 36%, 46%, 68%, 100% { opacity: 1; filter: drop-shadow(0 0 0 transparent); }
+  22%, 54% { opacity: .9; filter: drop-shadow(0 0 7px currentColor); }
 }
 @keyframes study-stock-team-receive {
   0%, 24%, 33%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
