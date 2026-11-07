@@ -1,0 +1,16 @@
+.visual-study { color: var(--accent); min-width: 0; }
+.visual-study svg { width: 100%; height: auto; overflow: visible; }
+.study-grid { stroke: var(--color-line); stroke-width: .65; opacity: .45; }
+.study-faint { stroke: var(--color-line); }
+.study-ink { stroke: var(--color-ink); stroke-width: 1; }
+.study-arch { stroke: var(--color-ink); stroke-width: 32; }
+.study-paper { fill: var(--color-paper); stroke: var(--color-ink); stroke-width: 1; }
+.study-ticks { stroke: var(--color-muted); stroke-width: .7; }
+.study-type { font-family: var(--font-mono); font-size: 8px; letter-spacing: .8px; fill: var(--color-muted); }
+.study-label { font-family: var(--font-sans); font-size: 12px; font-weight: 550; fill: var(--color-ink); }
+.study-label-inverse { fill: var(--color-surface); }
+.study-web { --accent: var(--color-web); }
+.study-stock { --accent: var(--color-stock); }
+.study-design { --accent: var(--color-design); }
+.visual-study figcaption { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; border-top: 1px solid var(--color-line); font-size: 10px; color: var(--color-muted); }
+.study-caption-mark { font-family: var(--font-mono); color: var(--color-ink); }

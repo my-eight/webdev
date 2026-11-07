@@ -1,0 +1,50 @@
+.site-header { border-bottom: 1px solid var(--color-line); }
+.header-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.wordmark { display: inline-flex; align-items: center; gap: 15px; font-size: 20px; line-height: 1.25; font-weight: 650; letter-spacing: -.05em; flex-shrink: 0; }
+.wordmark-neutral { font-size: 11px; font-weight: 550; line-height: 1.55; letter-spacing: .01em; }
+.wordmark-caption { display: block; margin-top: 6px; font-size: 9px; font-weight: 500; letter-spacing: .025em; color: var(--color-muted); }
+.brand-mark { width: 30px; height: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.brand-mark i { display: block; background: var(--color-ink); }
+.brand-mark i:nth-child(2) { background: var(--color-red); }
+.brand-mark i:last-child { grid-column: span 2; }
+.main-navigation { display: flex; align-items: center; gap: clamp(22px, 2.5vw, 42px); }
+.nav-link { position: relative; padding-block: 12px; font-size: 12px; font-weight: 550; }
+.nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--ease); }
+.nav-link:hover::after, .nav-link[aria-current='page']::after { transform: scaleX(1); }
+.nav-web[aria-current='page'] { color: var(--color-web); }
+.nav-stock[aria-current='page'] { color: var(--color-stock); }
+.nav-design[aria-current='page'] { color: var(--color-design); }
+.header-contact { display: flex; align-items: center; gap: 24px; padding: 10px 0 10px 28px; border-left: 1px solid var(--color-line); font-size: 12px; font-weight: 650; }
+.header-contact span { font-size: 19px; }
+.header-contact:hover { color: var(--color-red); }
+.menu-toggle { display: none; }
+.site-footer { background: var(--color-paper); }
+.footer-main { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 64px; padding-block: 64px; }
+.footer-signature { align-self: start; font-size: clamp(26px, 2.8vw, 40px); line-height: 1.17; letter-spacing: -.05em; }
+.footer-signature em { color: var(--color-muted); }
+.footer-main nav { display: flex; flex-direction: column; gap: 9px; }
+.footer-main .eyebrow { display: block; margin-bottom: 17px; color: var(--color-muted); font-size: 10px; }
+.footer-main nav a { display: flex; justify-content: space-between; max-width: 190px; min-height: 36px; align-items: center; font-size: 13px; }
+.footer-main nav a:hover { color: var(--color-red); }
+.footer-info p { margin-bottom: 14px; font-size: 13px; line-height: 1.65; }
+.footer-info p span { color: var(--color-muted); font-size: 11px; }
+.footer-bottom { border-top: 1px solid var(--color-line); min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--color-muted); font-size: 10px; }
+.footer-bottom a { padding-block: 14px; }
+@media (max-width: 1000px) { .header-inner { gap: 22px; } .main-navigation { gap: 20px; } .wordmark-caption { display: none; } .header-contact { padding-left: 18px; gap: 12px; } .wordmark { font-size: 18px; } }
+@media (max-width: 760px) {
+  .header-inner { position: relative; min-height: 80px; flex-wrap: wrap; gap: 0; }
+  .wordmark { font-size: 19px; }
+  .wordmark-neutral { font-size: 10px; }
+  .brand-mark { width: 26px; height: 28px; }
+  .menu-toggle { display: flex; gap: 15px; align-items: center; justify-content: center; background: transparent; border: 0; color: var(--color-ink); font-size: 12px; min-height: 48px; padding: 0 0 0 12px; }
+  .menu-toggle span { font-size: 24px; font-weight: 300; }
+  .main-navigation { display: none; flex-basis: 100%; padding-block: 16px 28px; border-top: 1px solid var(--color-line); }
+  .main-navigation.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .nav-link { min-height: 48px; padding: 12px 0; font-size: 15px; }
+  .nav-link::after { right: auto; width: 20px; }
+  .header-contact { margin-top: 12px; padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--color-line); justify-content: space-between; }
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 28px; padding-block: 48px; }
+  .footer-signature { grid-column: span 2; font-size: 32px; }
+  .footer-bottom { flex-wrap: wrap; gap: 8px 22px; padding-block: 20px; }
+  .footer-bottom > span:nth-child(2) { display: none; }
+}

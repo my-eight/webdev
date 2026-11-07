@@ -1,0 +1,33 @@
+{
+  "name": "personal-services-web",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+  },
+  "scripts": {
+    "dev": "nuxt dev --host 127.0.0.1",
+    "build": "nuxt build",
+    "build:pages": "node scripts/build-pages.mjs",
+    "check:static": "node scripts/check-static.mjs",
+    "preview": "nuxt preview --host 127.0.0.1",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "check:seo": "node scripts/check-seo.mjs",
+    "check:release": "node scripts/check-release.mjs",
+    "generate:social": "node scripts/generate-social.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "5.3.0",
+    "nuxt": "4.6.4",
+    "vue": "3.5.45",
+    "vue-router": "5.4.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "@types/node": "^24.19.2",
+    "typescript": "6.0.3",
+    "vue-tsc": "3.3.14"
+  }
+}

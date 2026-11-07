@@ -1,0 +1,22 @@
+:root {
+  --color-paper: #f7f4ec;
+  --color-surface: #fffdf8;
+  --color-ink: #202523;
+  --color-muted: #5f6763;
+  --color-line: #d8d5cc;
+  --color-red: #a63d32;
+  --color-web: #3e5d49;
+  --color-stock: #294b68;
+  --color-design: #a63d32;
+  --accent: var(--color-red);
+  --font-sans: 'Manrope Variable', 'Segoe UI', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Cascadia Code', Consolas, monospace;
+  --page-width: 1320px;
+  --gutter: clamp(22px, 4.4vw, 76px);
+  --space-section: clamp(64px, 7vw, 108px);
+  --ease: 180ms ease;
+}
+.theme-web { --accent: var(--color-web); }
+.theme-stock { --accent: var(--color-stock); }
+.theme-design { --accent: var(--color-design); }
