@@ -1,6 +1,10 @@
 node_modules/
 .nuxt/
+.nuxt-server/
+.nuxt-pages/
+.cache/
 .output/
+.output-pages/
 dist/
 .env
 .env.*

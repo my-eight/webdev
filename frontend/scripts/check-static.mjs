@@ -2,12 +2,14 @@ import assert from 'node:assert/strict'
 import { readFile, access, readdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { resolve, relative, sep } from 'node:path'
+import { pagesEnv } from './pages-env.mjs'
 
-const output = fileURLToPath(new URL('../.output/public/', import.meta.url))
-const base = '/' + (process.env.NUXT_APP_BASE_URL || '/').split('/').filter(Boolean).join('/')
+const env = pagesEnv()
+const output = fileURLToPath(new URL('../.output-pages/public/', import.meta.url))
+const base = '/' + env.NUXT_APP_BASE_URL.split('/').filter(Boolean).join('/')
 const prefix = base === '/' ? '/' : base + '/'
-const origin = process.env.NUXT_PUBLIC_SITE_URL || ''
-const indexable = process.env.NUXT_PUBLIC_INDEXABLE === 'true'
+const origin = env.NUXT_PUBLIC_SITE_URL
+const indexable = env.NUXT_PUBLIC_INDEXABLE === 'true'
 const routes = ['/', '/web-development', '/moysklad', '/design']
 const documents = new Map()
 const attributes = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(match => [match[1], match[2].replaceAll('&amp;', '&')]))

@@ -1,12 +1,18 @@
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { allowsIndexing, publicPath, publicPaths } from './shared/utils/site'
 
 const isGitHubPages = process.env.NITRO_PRESET === 'github_pages'
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
+const buildMode = isGitHubPages ? 'pages' : process.env.WEBDEV_BUILD_MODE === 'server' ? 'server' : 'dev'
+const buildDir = buildMode === 'dev' ? '.nuxt' : `.nuxt-${buildMode}`
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-11-07',
   devtools: { enabled: false },
+  buildDir,
+  typesDir: buildDir,
+  vite: { cacheDir: `.cache/nuxt/${buildMode}` },
   ssr: true,
   features: { inlineStyles: false },
   css: [
@@ -36,6 +42,15 @@ export default defineNuxtConfig({
   typescript: { strict: true },
   nitro: {
     preset: isGitHubPages ? 'github_pages' : 'node-server',
+    output: { dir: isGitHubPages ? '.output-pages' : '.output' },
+    // Nuxt supplies file: URLs for its prerender storage driver on Windows.
+    // Rollup needs a filesystem ID to bundle that module instead of externalizing it.
+    ...(process.platform === 'win32' ? { rollupConfig: { plugins: [{
+      name: 'resolve-windows-file-urls',
+      resolveId(source: string) {
+        if (source.startsWith('file:')) return fileURLToPath(source).replaceAll('\\', '/')
+      },
+    }] } } : {}),
     compressPublicAssets: true,
     ...(isGitHubPages ? { prerender: {
       crawlLinks: true,

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nuxt dev --host 127.0.0.1",
-    "build": "nuxt build",
+    "build": "node scripts/build.mjs",
     "build:pages": "node scripts/build-pages.mjs",
     "check:static": "node scripts/check-static.mjs",
     "preview": "nuxt preview --host 127.0.0.1",
@@ -16,7 +16,8 @@
     "typecheck": "nuxt typecheck",
     "check:seo": "node scripts/check-seo.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "generate:social": "node scripts/generate-social.mjs"
+    "generate:social": "node scripts/generate-social.mjs",
+    "check:social": "node scripts/generate-social.mjs --check"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",

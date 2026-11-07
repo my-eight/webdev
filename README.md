@@ -18,26 +18,34 @@ pnpm dev
 
 ## GitHub Pages
 
-Workflow `.github/workflows/pages.yml` проверяет TypeScript, создаёт статический HTML четырёх страниц и публикует только `frontend/.output/public` после изменений в `main`. В настройках репозитория источник Pages должен быть **GitHub Actions**.
+Workflow `.github/workflows/pages.yml` проверяет TypeScript, создаёт статический HTML четырёх страниц и публикует только `frontend/.output-pages/public` после изменений в `main`. В настройках репозитория источник Pages должен быть **GitHub Actions**.
 
-Для проверки такой сборки локально в PowerShell:
+Для локальной сборки достаточно команд ниже; переменные Pages задаются только дочернему процессу и не остаются в PowerShell:
 
-```powershell
+```shell
 cd frontend
-$env:NUXT_APP_BASE_URL = '/webdev/'
-$env:NUXT_PUBLIC_SITE_URL = 'https://my-eight.github.io'
-$env:NUXT_PUBLIC_INDEXABLE = 'false'
 pnpm build:pages
 pnpm check:static
 ```
 
+По умолчанию это демонстрационная версия для `https://my-eight.github.io/webdev/` с выключенной индексацией. Workflow передаёт адрес из имени владельца и репозитория. При необходимости значения `NUXT_APP_BASE_URL`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_INDEXABLE` можно задать явно в окружении сборки.
+
+Dev, серверная сборка и Pages используют раздельные рабочие каталоги: `.nuxt`, `.nuxt-server`, `.nuxt-pages`; Vite-кэши — `.cache/nuxt/dev`, `server`, `pages`. Результат серверной сборки — `.output`, Pages — `.output-pages`. Можно оставлять `pnpm dev` запущенным во время обеих сборок. Команды `pnpm build` и `pnpm build:pages` выбирают режим только для своего дочернего процесса; `.nuxt` остаётся каталогом типов редактора и обычной разработки.
+
+Если переменные Pages были вручную заданы в текущем окне PowerShell по старой инструкции, перед запуском dev откройте новое окно или удалите их:
+
+```powershell
+Remove-Item Env:NUXT_APP_BASE_URL, Env:NUXT_PUBLIC_SITE_URL, Env:NUXT_PUBLIC_INDEXABLE, Env:NITRO_PRESET -ErrorAction SilentlyContinue
+```
+
 На Pages используется предварительная генерация HTML; сервер Node.js и будущая логика Go там не выполняются. Настройки окружения встраиваются в HTML во время сборки. Контакты и реальные материалы ещё дополняются, поэтому поисковая индексация этой версии выключена явно в workflow. Canonical, метаданные и пути ресурсов учитывают `/webdev/`.
 
-Внутренние Markdown-заметки проекта, зависимости, локальные настройки, кэши и скриншоты не входят в публичный репозиторий и сайт. Изображения превью ссылок находятся в `frontend/public/social`, генератор — `frontend/scripts/generate-social.mjs`.
+Внутренние Markdown-заметки проекта, зависимости, локальные настройки, кэши и скриншоты не входят в публичный репозиторий и сайт. Изображения превью ссылок находятся в `frontend/public/social`, генератор — `frontend/scripts/generate-social.mjs`. Цвета он читает из `tokens.css`; шрифт Manrope Regular с кириллицей и лицензией OFL включён в `frontend/scripts/assets/`, системные шрифты отключены. После изменения палитры или макета выполните `pnpm generate:social`. `pnpm check:social` проверяет совпадение готовых PNG с генерацией; такая же проверка выполняется в Linux CI.
 
 ## Проверки
 
 - `pnpm typecheck` — проверка типов.
+- `pnpm check:social` — воспроизводимость изображений превью без системных шрифтов.
 - `pnpm build` и `pnpm check:seo` — серверная сборка и проверка SEO для будущего серверного размещения.
 - `pnpm build:pages` и `pnpm check:static` — сборка для Pages, проверка HTML, метаданных, ссылок и ресурсов.
 - `pnpm check:release` — проверка домена, контактов и включённой индексации перед окончательным публичным запуском.

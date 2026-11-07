@@ -1,0 +1,8 @@
+Manrope Regular, including Cyrillic glyphs.
+Source: https://github.com/google/fonts/tree/main/ofl/manrope
+File: https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf
+Retrieved: 2026-11-07
+Static weight 400 instantiated from the upstream variable font using fontTools 4.68.0:
+  instantiateVariableFont(TTFont(source), {'wght': 400}, inplace=True).save(target)
+Redistributed under SIL Open Font License 1.1; see Manrope-OFL.txt.
+The file is bundled so preview generation never depends on installed system fonts.
