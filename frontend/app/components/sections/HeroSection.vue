@@ -10,7 +10,7 @@ defineProps<{ page: ServicePageData }>()
       <h1 id="service-title">{{ page.heading }}<br><em>{{ page.emphasis }}</em></h1>
       <p class="hero-lead">{{ page.lead }}</p>
       <p class="hero-detail">{{ page.detail }}</p>
-      <div class="hero-actions"><a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a><a :href="page.secondary.to" class="text-link">{{ page.secondary.label }} <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-actions"><a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a><a :href="page.secondary.to" class="text-link"><span class="text-link-label">{{ page.secondary.label }}</span><span class="text-link-arrow" aria-hidden="true">↓</span></a></div>
       <p class="hero-note">{{ page.note }}</p>
     </div>
     <UiVisualStudy :theme="page.theme" />

@@ -14,3 +14,93 @@
 .study-design { --accent: var(--color-design); }
 .visual-study figcaption { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; border-top: 1px solid var(--color-line); font-size: 10px; color: var(--color-muted); }
 .study-caption-mark { font-family: var(--font-mono); color: var(--color-ink); }
+
+.study-motion { transform-box: view-box; transform-origin: 50% 50%; }
+.study-motion-detail { transform-box: fill-box; }
+.study-motion-design-disc { transform-origin: 241px 224px; }
+.stock-network { --stock-cycle: 8s; }
+.stock-connections { stroke: currentColor; stroke-width: 1; }
+.stock-arrowhead { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.stock-flow { --packet-length: 9; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: butt; stroke-dasharray: var(--packet-length) 120; stroke-dashoffset: var(--packet-length); opacity: 0; }
+.stock-flow-data { --packet-length: 30; }
+.stock-icon { fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .web-reveal { stroke-dasharray: 100 100; animation: study-web-write 8s ease-in-out both infinite; animation-delay: calc(var(--write-delay, 0s) - 1s); }
+  /* Transfers and receivers share a clock: hub 18/48%, team 26%, data 64%, order 88%. */
+  .stock-flow, .stock-icon, .stock-hub { animation-duration: var(--stock-cycle); animation-delay: -.6s; animation-iteration-count: infinite; }
+  .stock-flow { animation-timing-function: linear; }
+  .stock-icon, .stock-hub { animation-timing-function: ease-in-out; }
+  .stock-flow-order { animation-name: study-stock-order-send; }
+  .stock-flow-team { animation-name: study-stock-team-send; }
+  .stock-flow-hub { animation-name: study-stock-hub-send; }
+  .stock-flow-data { animation-name: study-stock-data-send; }
+  .stock-flow-order-return { animation-name: study-stock-order-return; }
+  .stock-icon-order { animation-name: study-stock-order-receive; }
+  .stock-icon-team { animation-name: study-stock-team-receive; }
+  .stock-icon-data { animation-name: study-stock-data-receive; }
+  .stock-hub { animation-name: study-stock-hub-receive; }
+  .study-motion-design { animation: study-design-drift 12s ease-in-out -2s infinite; }
+  .study-motion-design-disc { animation: study-disc-turn 10s ease-in-out -1.2s infinite; }
+  .study-motion-design-card { animation: study-design-card-drift 7.5s ease-in-out -1.7s infinite; }
+}
+
+@keyframes study-web-write {
+  0%, 5%, 100% { stroke-dashoffset: 100; }
+  16%, 82% { stroke-dashoffset: 0; }
+  94% { stroke-dashoffset: 100; }
+}
+@keyframes study-stock-order-send {
+  0% { stroke-dashoffset: var(--packet-length); opacity: 0; }
+  1%, 16% { opacity: 1; }
+  18%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes study-stock-team-send {
+  0% { stroke-dashoffset: var(--packet-length); opacity: 0; }
+  1%, 24% { opacity: 1; }
+  26%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes study-stock-hub-send {
+  0%, 28% { stroke-dashoffset: var(--packet-length); opacity: 0; }
+  29%, 46% { opacity: 1; }
+  48%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes study-stock-data-send {
+  0%, 52% { stroke-dashoffset: var(--packet-length); opacity: 0; }
+  53%, 61% { opacity: 1; }
+  64%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes study-stock-order-return {
+  0%, 64% { stroke-dashoffset: var(--packet-length); opacity: 0; }
+  65%, 86% { opacity: 1; }
+  88%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes study-stock-hub-receive {
+  0%, 16%, 24%, 46%, 54%, 100% { opacity: 1; filter: drop-shadow(0 0 0 transparent); }
+  18%, 48% { opacity: .9; filter: drop-shadow(0 0 7px currentColor); }
+  20%, 50% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+}
+@keyframes study-stock-team-receive {
+  0%, 24%, 33%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
+  26% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+}
+@keyframes study-stock-data-receive {
+  0%, 61%, 72%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
+  64% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+}
+@keyframes study-stock-order-receive {
+  0%, 86%, 96%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
+  88% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+}
+@keyframes study-design-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(0, -6px) rotate(-2deg); }
+}
+@keyframes study-disc-turn {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+}
+@keyframes study-design-card-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-6px, 8px) rotate(4deg); }
+}

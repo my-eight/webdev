@@ -15,12 +15,12 @@ const contacts = usePersonContacts(personKey)
       <div class="contact-card">
         <div class="contact-person"><span class="contact-monogram" aria-hidden="true">{{ personKey === 'slava' ? 'С' : 'Э' }}</span><div><h3>{{ person.name }}</h3><p>{{ person.role }}</p></div></div>
         <div v-if="contacts.telegram || contacts.phone || contacts.email" class="contact-links">
-          <a v-if="contacts.telegram" :href="contacts.telegram" class="contact-method contact-method-primary"><span class="contact-method-copy"><span class="contact-method-label">Написать в Telegram</span><span class="contact-method-value">{{ contacts.telegramLabel }}</span></span><span class="contact-method-arrow" aria-hidden="true">↗</span></a>
+          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener noreferrer" class="contact-method contact-method-primary"><span class="contact-method-copy"><span class="contact-method-label">Написать в Telegram</span><span class="contact-method-value">{{ contacts.telegramLabel }}</span></span><span class="contact-method-arrow" aria-hidden="true">↗</span></a>
           <a v-if="contacts.phone" :href="contacts.phone" class="contact-method"><span class="contact-method-copy"><span class="contact-method-label">Позвонить</span><span class="contact-method-value">{{ contacts.phoneLabel }}</span></span><span class="contact-method-arrow" aria-hidden="true">↗</span></a>
-          <a v-if="contacts.email" :href="contacts.email" class="contact-method"><span class="contact-method-copy"><span class="contact-method-label">Написать на почту</span><span class="contact-method-value">{{ contacts.emailLabel }}</span></span><span class="contact-method-arrow" aria-hidden="true">↗</span></a>
+          <a v-if="contacts.email" :href="contacts.email" target="_blank" rel="noopener noreferrer" class="contact-method"><span class="contact-method-copy"><span class="contact-method-label">Написать на почту</span><span class="contact-method-value">{{ contacts.emailLabel }}</span></span><span class="contact-method-arrow" aria-hidden="true">↗</span></a>
         </div>
         <p v-else class="contact-pending" role="status">Контакты появятся перед запуском сайта.</p>
-        <a v-if="personKey === 'erin'" href="https://www.behance.net/erinart" class="text-link portfolio-link">Портфолио на Behance <span aria-hidden="true">↗</span></a>
+        <a v-if="personKey === 'erin'" href="https://www.behance.net/erinart" class="text-link portfolio-link"><span class="text-link-label">Портфолио на Behance</span><span class="text-link-arrow" aria-hidden="true">↗</span></a>
         <p class="contact-footnote">Россия · Работаю удалённо<br>Можно начать с описания своими словами.</p>
       </div>
     </div>

@@ -8,7 +8,7 @@ try {
   const url = new URL(origin)
   if (url.protocol !== 'https:' || url.pathname !== '/' || url.search || url.hash || url.username || url.password || /localhost|\.test$|\.example$|example\.(com|org|net)$|\.local$|^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)) throw new Error()
 } catch { problems.push('Укажите настоящий HTTPS origin в NUXT_PUBLIC_SITE_URL, без пути и параметров.') }
-if (process.env.NUXT_PUBLIC_INDEXABLE !== 'true') problems.push('После подготовки сайта включите NUXT_PUBLIC_INDEXABLE=true для боевого окружения.')
+if (process.env.NUXT_PUBLIC_INDEXABLE !== 'true') problems.push('Только после боевой публикации и повторной проверки всех текстов на SEO/GEO включите NUXT_PUBLIC_INDEXABLE=true в боевом окружении.')
 for (const [prefix, person] of [['SLAVA', 'Славы'], ['ERIN', 'Эрин']]) {
   const defaults = publicContacts[prefix.toLowerCase()]
   const telegram = telegramLink(process.env[`NUXT_PUBLIC_${prefix}_TELEGRAM`] ?? defaults.telegram)

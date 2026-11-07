@@ -1,5 +1,6 @@
-.site-header { border-bottom: 1px solid var(--color-line); }
-.header-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--color-paper); border-bottom: 1px solid var(--color-line); transition: box-shadow var(--ease); }
+.site-header.is-scrolled, .site-header.is-menu-open { box-shadow: 0 8px 24px rgb(32 37 35 / 6%); }
+.header-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 .wordmark { display: inline-flex; align-items: center; gap: 15px; font-size: 20px; line-height: 1.25; font-weight: 650; letter-spacing: -.05em; flex-shrink: 0; }
 .wordmark-neutral { font-size: 11px; font-weight: 550; line-height: 1.55; letter-spacing: .01em; }
 .wordmark-caption { display: block; margin-top: 6px; font-size: 9px; font-weight: 500; letter-spacing: .025em; color: var(--color-muted); }
@@ -32,13 +33,13 @@
 .footer-bottom a { padding-block: 14px; }
 @media (max-width: 1000px) { .header-inner { gap: 22px; } .main-navigation { gap: 20px; } .wordmark-caption { display: none; } .header-contact { padding-left: 18px; gap: 12px; } .wordmark { font-size: 18px; } }
 @media (max-width: 760px) {
-  .header-inner { position: relative; min-height: 80px; flex-wrap: wrap; gap: 0; }
+  .header-inner { gap: 0; }
   .wordmark { font-size: 19px; }
   .wordmark-neutral { font-size: 10px; }
   .brand-mark { width: 26px; height: 28px; }
   .menu-toggle { display: flex; gap: 15px; align-items: center; justify-content: center; background: transparent; border: 0; color: var(--color-ink); font-size: 12px; min-height: 48px; padding: 0 0 0 12px; }
   .menu-toggle span { font-size: 24px; font-weight: 300; }
-  .main-navigation { display: none; flex-basis: 100%; padding-block: 16px 28px; border-top: 1px solid var(--color-line); }
+  .main-navigation { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: calc(100vh - var(--header-height) - 24px); max-height: calc(100dvh - var(--header-height) - 24px); padding: 16px var(--gutter) 28px; overflow-y: auto; overscroll-behavior: contain; background: var(--color-paper); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); box-shadow: 0 16px 24px rgb(32 37 35 / 8%); }
   .main-navigation.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .nav-link { min-height: 48px; padding: 12px 0; font-size: 15px; }
   .nav-link::after { right: auto; width: 20px; }

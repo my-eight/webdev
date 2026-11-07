@@ -13,10 +13,12 @@
   --font-serif: Georgia, 'Times New Roman', serif;
   --font-mono: 'Cascadia Code', Consolas, monospace;
   --page-width: 1320px;
+  --header-height: 100px;
   --gutter: clamp(22px, 4.4vw, 76px);
   --space-section: clamp(64px, 7vw, 108px);
   --ease: 180ms ease;
 }
+@media (max-width: 760px) { :root { --header-height: 72px; } }
 .theme-web { --accent: var(--color-web); }
 .theme-stock { --accent: var(--color-stock); }
 .theme-design { --accent: var(--color-design); }

@@ -11,13 +11,13 @@
 .contact-person p { margin-top: 5px; font-size: 10px; color: var(--color-muted); }
 .contact-pending { margin-top: 30px; padding-block: 19px; border-block: 1px solid var(--color-line); font-size: 12px; line-height: 1.8; color: var(--color-muted); }
 .contact-links { margin-top: 28px; display: flex; flex-direction: column; }
-.contact-method { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; padding-block: 16px; border-bottom: 1px solid var(--color-line); transition: color var(--ease), background var(--ease); }
+.contact-method { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; padding-block: 16px; padding-inline-end: 18px; border-bottom: 1px solid var(--color-line); transition: color var(--ease), background var(--ease); }
 .contact-method-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .contact-method-label { font-size: 11px; color: var(--color-muted); }
 .contact-method-value { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
 .contact-method-arrow { flex: 0 0 auto; font-size: 20px; }
 .contact-method:hover { color: var(--accent); }
-.contact-method-primary { padding-inline: 18px; border-bottom: 0; background: var(--color-ink); color: var(--color-surface); }
+.contact-method-primary { padding-inline-start: 18px; border-bottom: 0; background: var(--color-ink); color: var(--color-surface); }
 .contact-method-primary .contact-method-label { color: inherit; }
 .contact-method-primary:hover { background: var(--accent); color: var(--color-surface); }
 .contact-footnote { margin-top: 24px; font-size: 10px; line-height: 1.9; color: var(--color-muted); }

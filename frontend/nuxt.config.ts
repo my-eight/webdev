@@ -32,6 +32,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: '',
+      // Keep closed until production deployment and the full SEO/GEO text review are complete.
       indexable: false,
       trailingSlash: isGitHubPages,
       slavaPhone: publicContacts.slava.phone,
