@@ -40,8 +40,22 @@ const hilts = {
           </filter>
           <filter :id="`${id}-ink`" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
             <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .2126 .7152 .0722 0 0" />
-            <feComponentTransfer><feFuncA type="linear" slope="12" intercept="-4.8" /></feComponentTransfer>
+            <feComponentTransfer><feFuncA type="linear" slope="16" intercept="-4" /></feComponentTransfer>
             <feComposite in2="SourceAlpha" operator="in" />
+            <!-- Close small gaps in the print without thickening the original strokes -->
+            <feMorphology operator="dilate" radius=".12" />
+            <feMorphology operator="erode" radius=".12" />
+            <feGaussianBlur stdDeviation=".02" />
+          </filter>
+          <filter :id="`${id}-print`" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+            <!-- Compress the source grain into a light wear variation instead of dark blotches -->
+            <feComponentTransfer result="worn-print">
+              <feFuncR type="linear" slope=".2" intercept=".8" />
+              <feFuncG type="linear" slope=".2" intercept=".8" />
+              <feFuncB type="linear" slope=".2" intercept=".8" />
+            </feComponentTransfer>
+            <feFlood flood-color="currentColor" result="ink" />
+            <feComposite in="worn-print" in2="ink" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
           </filter>
           <filter :id="`${id}-shine`" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
             <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .2126 .7152 .0722 0 0" />
@@ -58,7 +72,8 @@ const hilts = {
         <image :href="fallback" width="100" height="100" preserveAspectRatio="none"
           :clip-path="`url(#${id}-metal)`" :filter="`url(#${id}-colour)`" :mask="`url(#${id}-highlights)`" />
         <g :clip-path="`url(#${id}-mark)`">
-          <rect width="100" height="100" fill="currentColor" :mask="`url(#${id}-letters)`" />
+          <image :href="fallback" width="100" height="100" preserveAspectRatio="none"
+            :filter="`url(#${id}-print)`" :mask="`url(#${id}-letters)`" />
         </g>
         <g :clip-path="`url(#${id}-hat)`" :filter="`url(#${id}-colour)`">
           <image class="samurai-reflection" :href="fallback" width="100" height="100" preserveAspectRatio="none" />
