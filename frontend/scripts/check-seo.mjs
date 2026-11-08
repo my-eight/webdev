@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { assertQuiz } from './assert-quiz.mjs'
+import { assertFaq } from './assert-faq.mjs'
 import { spawn } from 'node:child_process'
 import { createServer } from 'node:net'
 import { access } from 'node:fs/promises'
@@ -173,6 +174,7 @@ async function checkMode(mode) {
     }
     const design = documents.get('/design')
     for (const [path, html] of documents) assertQuiz(html, path)
+    for (const [path, html] of documents) assertFaq(html, path)
     const order = [
       'process',
       'pricing',

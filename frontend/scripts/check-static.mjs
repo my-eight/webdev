@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { assertQuiz } from './assert-quiz.mjs'
+import { assertFaq } from './assert-faq.mjs'
 import { readFile, access, readdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { resolve, relative, sep } from 'node:path'
@@ -96,6 +97,7 @@ assert.equal(titles.size, routes.length)
 assert.equal(descriptions.size, routes.length)
 const home = documents.get('/')
 for (const [path, html] of documents) assertQuiz(html, path)
+for (const [path, html] of documents) assertFaq(html, path)
 assert.ok(!home.includes('С кем обсудить задачу'))
 assert.ok(!home.includes('Эрин'))
 const design = documents.get('/design')

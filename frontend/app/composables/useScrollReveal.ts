@@ -1,6 +1,8 @@
+import { typeTextWithin, finishTypingWithin } from '~/utils/typewriter'
+
 const revealTargets = [
   '.home-section-heading', '.home-approach > h2', '.direction-card', '.home-principles article',
-  '.section-heading', '.section-item', '.process-list > li', '#faq-title', '.faq-column > details',
+  '.section-heading', '.section-item', '.process-list > li', '#faq-title', '.faq-layout',
   '.quiz-heading', '.quiz-shell', '.contact-copy', '.contact-card',
   '.footer-brand', '.footer-note', '.footer-bottom',
 ].join(', ')
@@ -20,7 +22,10 @@ export function useScrollReveal(root: Ref<HTMLElement | null>) {
     observer?.unobserve(element)
     pending.delete(element)
     element.dataset.reveal = 'shown'
-    if (!animate || reduced?.matches || !element.isConnected) return
+    if (!animate || reduced?.matches || !element.isConnected) {
+      finishTypingWithin(element)
+      return
+    }
     const rect = element.getBoundingClientRect()
     const narrow = window.innerWidth <= 760
     const viewportWidth = document.documentElement.clientWidth
@@ -31,16 +36,18 @@ export function useScrollReveal(root: Ref<HTMLElement | null>) {
     const bottomSpace = document.documentElement.scrollHeight - (rect.bottom + window.scrollY)
     const y = Math.min(16 + Math.random() * (narrow ? 12 : 22), Math.max(0, bottomSpace - 8))
     const angle = narrow || Math.min(leftSpace, rightSpace) < 12 ? 0 : (Math.random() * 2 - 1) * 0.45
+    const delay = Math.random() * 160
     const animation = element.animate([
       { opacity: 0, transform: `translate3d(${x}px, ${y}px, 0) rotate(${angle}deg)` },
       { opacity: 1, transform: 'translate3d(0, 0, 0) rotate(0deg)' },
     ], {
       duration: 620 + Math.random() * 220,
-      delay: Math.random() * 160,
+      delay,
       easing: 'cubic-bezier(.18,.72,.22,1)',
       fill: 'both',
     })
     animations.set(element, animation)
+    typeTextWithin(element, delay + 80)
     const release = () => {
       animations.delete(element)
       animation.cancel()
@@ -53,6 +60,7 @@ export function useScrollReveal(root: Ref<HTMLElement | null>) {
     for (const element of pending) reveal(element, false)
     for (const animation of animations.values()) animation.cancel()
     animations.clear()
+    if (root.value) finishTypingWithin(root.value)
   }
 
   function scan() {
@@ -83,6 +91,7 @@ export function useScrollReveal(root: Ref<HTMLElement | null>) {
     const element = event.target.closest<HTMLElement>('[data-reveal]')
     if (!element) return
     animations.get(element)?.cancel()
+    finishTypingWithin(element)
     if (pending.has(element)) reveal(element, false)
   }
   function onPreference() {

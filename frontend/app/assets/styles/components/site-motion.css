@@ -1,6 +1,10 @@
 [data-reveal='pending'] {
   opacity: 0;
 }
+::highlight(m8n-typing) {
+  color: transparent;
+  text-shadow: none;
+}
 .interactive-grid {
   position: fixed;
   inset: 0;
