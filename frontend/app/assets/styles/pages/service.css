@@ -133,7 +133,7 @@
   font-size: var(--small-copy-size);
 }
 .section-process {
-  background: linear-gradient(110deg, color-mix(in srgb, var(--accent) 5%, #06080a), #06080ae8);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--accent) 5%, #06080a), #06080a);
   border-block: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
 }
 .process-list {

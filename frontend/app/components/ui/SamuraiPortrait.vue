@@ -11,14 +11,14 @@ const fallback = computed(() => `${base}${largest.value.path}`)
 const sources = computed(() => portrait.value.map(image => `${base}${image.path} ${image.width}w`).join(', '))
 const sizes = computed(() => props.compact ? '(max-width: 760px) 65vw, 500px' : '(max-width: 760px) 100vw, 62vw')
 // Restrict illumination to the existing printed shoulder mark, preserving the white collar
-const marks = { web: '59,60 68,60 68,83 59,83', stock: '79,70 88,70 88,91 79,91', design: '73,69 82,69 82,90 73,90' }
+const marks = { web: '59,61.751 68,61.751 68,85.422 59,85.422', stock: '79,70 88,70 88,91 79,91', design: '73,69 82,69 82,90 73,90' }
 const hats = {
-  web: '12,0 85,0 85,23 50,23 34,30 12,36',
+  web: '12,0 85,0 85,23.671 50,23.671 34,30.876 12,37.051',
   stock: '10,0 93,0 93,36 60,44 36,43 10,38',
   design: '20,0 95,0 95,46 57,30 20,23',
 }
 const hilts = {
-  web: '80,28 90,30 82,58 72,57',
+  web: '80,28.817 90,30.876 82,59.693 72,58.664',
   stock: '14,39 19,39 31,63 26,65',
   design: '15,34 21,34 32,62 26,64',
 }

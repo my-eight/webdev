@@ -7,6 +7,6 @@
     "moysklad": "Monochrome Cyber Samurai Portrait.png",
     "design": "Monochrome Cyberpunk Samurai Woman.png"
   },
-  "processing": "Unmodified source PNGs retained here; lossless WebP at original 1312px plus responsive 800px and 480px derivatives",
+  "processing": "Source artwork retained without repainting; development.png has only 34 near-transparent bottom rows removed (1312x1199 to 1312x1165), retained pixels are identical; lossless WebP at original 1312px plus responsive 800px and 480px derivatives",
   "lighting": "Separate CSS/SVG contour, existing shoulder-mark overlay and hover-only hat glint; no transform or pointer tracking"
 }

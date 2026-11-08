@@ -50,4 +50,5 @@
 }
 .theme-design {
   --accent: var(--color-design);
+  --button-ink: #fff;
 }

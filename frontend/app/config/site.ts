@@ -10,12 +10,12 @@ export const site = {
       theme: 'web',
       sections: [
         {
-          label: 'Услуги и интеграции',
-          id: 'services',
-        },
-        {
           label: 'Процесс',
           id: 'process',
+        },
+        {
+          label: 'Услуги и интеграции',
+          id: 'services',
         },
         {
           label: 'Стоимость',
@@ -35,8 +35,8 @@ export const site = {
       theme: 'stock',
       sections: [
         {
-          label: 'Ваша ситуация',
-          id: 'situation',
+          label: 'Процесс',
+          id: 'process',
         },
         {
           label: 'Услуги',
@@ -47,8 +47,8 @@ export const site = {
           id: 'automation',
         },
         {
-          label: 'Процесс',
-          id: 'process',
+          label: 'Ваша ситуация',
+          id: 'situation',
         },
         {
           label: 'Стоимость',

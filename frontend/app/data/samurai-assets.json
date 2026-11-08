@@ -2,22 +2,22 @@
   "development": {
     "images": [
       {
-        "path": "images/samurai/development-9db9d0c484-480.webp",
+        "path": "images/samurai/development-436b5db8f7-480.webp",
         "width": 480,
-        "height": 439,
-        "bytes": 113432
+        "height": 426,
+        "bytes": 113030
       },
       {
-        "path": "images/samurai/development-9db9d0c484-800.webp",
+        "path": "images/samurai/development-436b5db8f7-800.webp",
         "width": 800,
-        "height": 731,
-        "bytes": 294976
+        "height": 710,
+        "bytes": 295390
       },
       {
-        "path": "images/samurai/development-9db9d0c484-1312.webp",
+        "path": "images/samurai/development-436b5db8f7-1312.webp",
         "width": 1312,
-        "height": 1199,
-        "bytes": 769026
+        "height": 1165,
+        "bytes": 767922
       }
     ]
   },

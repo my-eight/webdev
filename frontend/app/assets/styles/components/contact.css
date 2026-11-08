@@ -113,6 +113,14 @@
 .contact-method-primary:hover {
   background: var(--color-ink);
 }
+.theme-design .contact-method-primary,
+.theme-design .contact-method-primary .contact-method-label,
+.theme-design .contact-method-primary .contact-method-arrow {
+  color: var(--button-ink);
+}
+.theme-design .contact-method-primary:hover {
+  background: color-mix(in srgb, var(--accent) 82%, #050607);
+}
 .portfolio-link {
   margin-top: 22px;
   color: var(--accent);

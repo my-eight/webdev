@@ -191,6 +191,10 @@ p {
   color: #050607;
   box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 20%, transparent);
 }
+.theme-design .button-primary:hover {
+  background: color-mix(in srgb, var(--accent) 82%, #050607);
+  color: var(--button-ink);
+}
 .button span {
   font-size: 21px;
   line-height: 1;
