@@ -43,15 +43,7 @@ export const site = {
           id: 'services',
         },
         {
-          label: 'Автоматизация',
-          id: 'automation',
-        },
-        {
-          label: 'Ваша ситуация',
-          id: 'situation',
-        },
-        {
-          label: 'Стоимость',
+          label: 'Стоимость и сроки',
           id: 'pricing',
         },
         {

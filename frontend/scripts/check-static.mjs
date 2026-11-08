@@ -124,12 +124,14 @@ assert.ok(order.every((value, i) => value >= 0 && (!i || value > order[i - 1])))
 const web = documents.get('/web-development')
 for (const [path, ids] of [
   ['/web-development', ['process', 'services', 'pricing', 'faq', 'quiz']],
-  ['/moysklad', ['process', 'services', 'automation', 'situation', 'pricing', 'approach', 'faq', 'quiz']],
+  ['/moysklad', ['process', 'services', 'pricing', 'faq', 'quiz']],
 ]) {
   const html = documents.get(path)
   const offsets = ids.map(id => html.indexOf(`id="${id}"`))
   assert.ok(offsets.every((offset, i) => offset >= 0 && (!i || offset > offsets[i - 1])), `Порядок секций: ${path}`)
 }
+assert.ok(!documents.get('/moysklad').includes('id="approach"'), 'Блок подхода МойСклад временно скрыт')
+assert.ok(!documents.get('/moysklad').includes('id="automation"') && !documents.get('/moysklad').includes('id="situation"'), 'Услуги МойСклад объединены')
 assert.ok(
   !web.includes('id="projects"') && !web.includes('id="integrations"'),
   'Web services are consolidated; projects are hidden',
