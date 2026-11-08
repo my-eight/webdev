@@ -93,14 +93,9 @@ onBeforeUnmount(() => {
     :class="{ 'is-scrolled': scrolled, 'is-menu-open': menuOpen, 'is-sections-open': expandedSection }"
   >
     <div class="container header-inner">
-      <NuxtLink
-        to="/"
-        class="wordmark"
-        :aria-label="identity ? `${identity.name} — на главную` : 'На главную'"
-        @click="closeMenu()"
-      >
+      <div class="wordmark">
         <UiBrandLogo :name="identity?.name" />
-      </NuxtLink>
+      </div>
       <button
         ref="menuToggle"
         class="menu-toggle"

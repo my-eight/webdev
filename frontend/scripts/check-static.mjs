@@ -13,7 +13,7 @@ const base = '/' + env.NUXT_APP_BASE_URL.split('/').filter(Boolean).join('/')
 const prefix = base === '/' ? '/' : base + '/'
 const origin = env.NUXT_PUBLIC_SITE_URL
 const indexable = env.NUXT_PUBLIC_INDEXABLE === 'true'
-const routes = ['/', '/web-development', '/moysklad', '/design']
+const routes = ['/web-development', '/moysklad', '/design']
 const documents = new Map()
 const attributes = (tag) =>
   Object.fromEntries(
@@ -101,7 +101,10 @@ for (const path of routes) {
 }
 assert.equal(titles.size, routes.length)
 assert.equal(descriptions.size, routes.length)
-const home = documents.get('/')
+const home = (await fileFor(publicRoute('/'))).value.toString('utf8')
+assert.match(home, /http-equiv="refresh"/i, 'Корень перенаправляет в раздел разработки')
+assert.ok(home.includes(prefix + 'web-development'), 'Переход учитывает базовый путь Pages')
+assert.ok(!home.includes('home-hero'), 'Главная временно отключена')
 for (const [path, html] of documents) assertQuiz(html, path)
 for (const [path, html] of documents) assertFaq(html, path)
 assert.ok(!home.includes('С кем обсудить задачу'))
@@ -138,6 +141,10 @@ assert.ok(
 )
 for (const html of documents.values())
   assert.ok(!/class="(?:section-number|item-number|section-label)"/.test(html), 'No ordinal section labels')
+for (const html of documents.values()) {
+  assert.ok(!/<a\b[^>]*class="wordmark"/.test(html), 'Логотип шапки не является ссылкой')
+  assert.ok(!html.includes('aria-label="На главную"'), 'У логотипов нет перехода на главную')
+}
 await access(resolve(output, '.nojekyll'))
 await access(resolve(output, '404.html'))
 const robots = await readFile(resolve(output, 'robots.txt'), 'utf8')
@@ -154,5 +161,5 @@ assert.ok(
   'В артефакте не должно быть исходников, настроек или Markdown',
 )
 console.log(
-  `Проверено: 4 готовые HTML-страницы, метаданные, JSON-LD, ссылки и якоря, ресурсы с базовым путём ${prefix}, стекло в готовом CSS, robots, 404 и отсутствие внутренних документов.`,
+  `Проверено: 3 страницы направлений и переход с корня, метаданные, JSON-LD, ссылки и якоря, ресурсы с базовым путём ${prefix}, стекло в готовом CSS, robots, 404 и отсутствие внутренних документов.`,
 )

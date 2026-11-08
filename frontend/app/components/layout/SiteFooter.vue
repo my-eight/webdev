@@ -8,7 +8,7 @@ const contacts = usePersonContacts(personKey)
   <footer class="site-footer">
     <div class="container footer-main">
       <div class="footer-brand">
-        <NuxtLink to="/" aria-label="На главную"><UiBrandLogo :name="identity?.name" /></NuxtLink>
+        <UiBrandLogo :name="identity?.name" />
         <div class="footer-socials">
           <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener noreferrer">Telegram <UiArrow /></a
           ><a v-if="contacts.email" :href="contacts.email" target="_blank" rel="noopener noreferrer">Почта <UiArrow /></a>

@@ -1,4 +1,4 @@
-export const publicPaths = ['/', '/web-development', '/moysklad', '/design'] as const
+export const publicPaths = ['/web-development', '/moysklad', '/design'] as const
 
 export function publicPath(path: string, baseURL = '/', trailingSlash = false): string {
   const base = '/' + baseURL.split('/').filter(Boolean).join('/')

@@ -66,6 +66,7 @@ export default defineNuxtConfig({
             crawlLinks: true,
             failOnError: true,
             routes: [
+              '/', // Входной адрес сохраняется как временный переход к разработке
               ...publicPaths,
               '/robots.txt',
               ...(allowsIndexing({

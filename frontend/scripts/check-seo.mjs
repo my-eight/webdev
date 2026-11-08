@@ -7,7 +7,7 @@ import { access } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
-const routes = ['/', '/web-development', '/moysklad', '/design']
+const routes = ['/web-development', '/moysklad', '/design']
 const origin = 'https://services.example.test'
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const attrs = (tag) =>
@@ -73,6 +73,9 @@ async function checkMode(mode) {
       await pause(150)
     }
     assert.ok(ready, `Server failed to start: ${logs.slice(-2000)}`)
+    const entry = await fetch(base + '/', { redirect: 'manual' })
+    assert.equal(entry.status, 302, 'Главная временно перенаправляет в разработку')
+    assert.equal(entry.headers.get('location'), '/web-development')
     const documents = new Map()
     const titles = new Set()
     const descriptions = new Set()
@@ -217,7 +220,7 @@ async function checkMode(mode) {
       assert.equal(sitemap.status, 404)
     }
     console.log(
-      `PASS ${mode}: 4 SSR pages, metadata, headings, links, section order, 404, redirects, robots, sitemap${isPublic ? ', schema and social images' : ''}`,
+      `PASS ${mode}: 3 SSR pages, root redirect, metadata, headings, links, section order, 404, redirects, robots, sitemap${isPublic ? ', schema and social images' : ''}`,
     )
   } finally {
     child.kill()
