@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { ItemSection } from '~/types/service'
-defineProps<{ section: ItemSection; number: number }>()
+defineProps<{ section: ItemSection }>()
 </script>
 
 <template>
-  <SectionsSectionFrame :section="section" :number="number">
-    <SectionsSectionItems :items="section.items" :numbered="section.kind === 'rows'" />
+  <SectionsSectionFrame :section="section">
+    <SectionsSectionItems :items="section.items" :grid-layout="section.gridLayout" />
   </SectionsSectionFrame>
 </template>

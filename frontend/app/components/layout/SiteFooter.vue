@@ -1,21 +1,33 @@
 <script setup lang="ts">
 import { site } from '~/config/site'
 const identity = usePageIdentity()
+const personKey = computed(() => (identity.value?.name === 'Эрин' ? 'erin' : 'slava'))
+const contacts = usePersonContacts(personKey)
 </script>
-
 <template>
   <footer class="site-footer">
     <div class="container footer-main">
-      <NuxtLink to="/" class="footer-signature">Мастерство.<br>Порядок.<br><em>Внимание к деталям.</em></NuxtLink>
-      <nav aria-label="Направления в подвале">
-        <span class="eyebrow">Направления</span>
-        <NuxtLink v-for="item in site.navigation" :key="item.path" :to="item.path">{{ item.label }} <span aria-hidden="true">↗</span></NuxtLink>
-      </nav>
-      <div class="footer-info">
-        <template v-if="identity"><span class="eyebrow">Личная работа</span><p>{{ identity.person.name }}<br><span>{{ identity.caption }}</span></p></template>
-        <template v-else><span class="eyebrow">Формат работы</span><p>По договору<br><span>Согласованное задание, акт и чек</span></p><p>Россия<br><span>Удалённая работа</span></p></template>
+      <div class="footer-brand">
+        <NuxtLink to="/" aria-label="На главную"><UiBrandLogo :name="identity?.name" /></NuxtLink>
+        <div class="footer-socials">
+          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener noreferrer">Telegram ↗</a
+          ><a v-if="contacts.email" :href="contacts.email" target="_blank" rel="noopener noreferrer">Почта ↗</a>
+        </div>
       </div>
+      <p class="footer-note">
+        {{ typography('Разработка, автоматизация и визуальный образ') + ' ' }}<br />{{
+          typography('Удалённо по договору')
+        }}
+      </p>
     </div>
-    <div class="container footer-bottom"><span>© {{ new Date().getFullYear() }} {{ identity ? identity.person.name : 'Разработка · Автоматизация · Дизайн' }}</span><span>Россия · Удалённо</span><a href="#main">К началу страницы ↑</a></div>
+    <div class="container footer-bottom">
+      <span>© {{ new Date().getFullYear() }} m8n</span>
+      <nav aria-label="Направления в подвале">
+        <NuxtLink v-for="item in site.navigation" :key="item.path" :to="item.path" :class="`nav-${item.theme}`">
+          {{ typography(item.label) }}
+        </NuxtLink>
+      </nav>
+      <a href="#main">Наверх ↑</a>
+    </div>
   </footer>
 </template>

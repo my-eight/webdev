@@ -5,11 +5,10 @@ export function usePageIdentity() {
   return computed(() => {
     const path = route.path.replace(/\/+$/, '') || '/'
     if (path === '/design') {
-      return { name: 'Эрин', person: people.erin, caption: 'Графический и бренд-дизайн' }
+      return { name: 'Эрин', person: people.erin }
     }
     if (path === '/web-development' || path === '/moysklad') {
-      return { name: 'Слава', person: people.slava,
-        caption: path === '/moysklad' ? 'МойСклад и автоматизация' : 'Веб-разработка' }
+      return { name: 'Слава', person: people.slava }
     }
     return undefined
   })

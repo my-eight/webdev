@@ -1,105 +1,394 @@
-.visual-study { color: var(--accent); min-width: 0; }
-.visual-study svg { width: 100%; height: auto; overflow: visible; }
-.study-grid { stroke: var(--color-line); stroke-width: .65; opacity: .45; }
-.study-faint { stroke: var(--color-line); }
-.study-ink { stroke: var(--color-ink); stroke-width: 1; }
-.study-arch { stroke: var(--color-ink); stroke-width: 32; }
-.study-paper { fill: var(--color-paper); stroke: var(--color-ink); stroke-width: 1; }
-.study-ticks { stroke: var(--color-muted); stroke-width: .7; }
-.study-type { font-family: var(--font-mono); font-size: 8px; letter-spacing: .8px; fill: var(--color-muted); }
-.study-label { font-family: var(--font-sans); font-size: 12px; font-weight: 550; fill: var(--color-ink); }
-.study-label-inverse { fill: var(--color-surface); }
-.study-web { --accent: var(--color-web); }
-.study-stock { --accent: var(--color-stock); }
-.study-design { --accent: var(--color-design); }
-.visual-study figcaption { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; border-top: 1px solid var(--color-line); font-size: 10px; color: var(--color-muted); }
-.study-caption-mark { font-family: var(--font-mono); color: var(--color-ink); }
-
-.study-motion { transform-box: view-box; transform-origin: 50% 50%; }
-.study-motion-detail { transform-box: fill-box; }
-.study-motion-design-disc { transform-origin: 241px 224px; }
-.stock-network { --stock-cycle: 8s; }
-.stock-connections { stroke: currentColor; stroke-width: 1; }
-.stock-arrowhead { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-.stock-flow { --packet-length: 9; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: butt; stroke-dasharray: var(--packet-length) 120; stroke-dashoffset: var(--packet-length); opacity: 0; }
-.stock-flow-data { --packet-length: 30; }
-.stock-icon { fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
-
+.visual-study {
+  width: 100%;
+  min-width: 0;
+  color: var(--accent);
+  position: relative;
+}
+.visual-study svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.art-guides {
+  opacity: 0.3;
+  stroke-width: 1;
+}
+.home-orbit {
+  opacity: 0.3;
+}
+.visual-home {
+  color: var(--color-web);
+}
+.home-panel {
+  stroke-linejoin: round;
+}
+.panel-blue {
+  color: var(--color-stock);
+}
+.panel-purple {
+  color: var(--color-design);
+}
+.web-scan {
+  opacity: 0;
+}
+.packet {
+  stroke-dasharray: 7 93;
+  stroke-dashoffset: 100;
+  opacity: 0;
+}
+.home-slice,
+.design-stroke {
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 100;
+  opacity: 0;
+}
+.terminal-cursor {
+  opacity: 0.8;
+}
+.visual-stock {
+  --stock-cycle: 8s;
+  --stock-pulse-glow: drop-shadow(0 0 5px color-mix(in srgb, currentColor 30%, transparent));
+}
+.stock-node {
+  opacity: 0.72;
+}
+.stock-core {
+  opacity: 0.88;
+}
+.visual-stock .packet {
+  /* One short packet: its leading edge travels from 0 to 100 of the visible path. */
+  stroke-dasharray: 8 108;
+  stroke-dashoffset: 8;
+}
 @media (prefers-reduced-motion: no-preference) {
-  .web-reveal { stroke-dasharray: 100 100; animation: study-web-write 8s ease-in-out both infinite; animation-delay: calc(var(--write-delay, 0s) - 1s); }
-  /* Transfers and receivers share a clock: hub 18/48%, team 26%, data 64%, order 88%. */
-  .stock-flow, .stock-icon, .stock-hub { animation-duration: var(--stock-cycle); animation-delay: -.6s; animation-iteration-count: infinite; }
-  .stock-flow { animation-timing-function: linear; }
-  .stock-icon, .stock-hub { animation-timing-function: ease-in-out; }
-  .stock-flow-order { animation-name: study-stock-order-send; }
-  .stock-flow-team { animation-name: study-stock-team-send; }
-  .stock-flow-hub { animation-name: study-stock-hub-send; }
-  .stock-flow-data { animation-name: study-stock-data-send; }
-  .stock-flow-order-return { animation-name: study-stock-order-return; }
-  .stock-icon-order { animation-name: study-stock-order-receive; }
-  .stock-icon-team { animation-name: study-stock-team-receive; }
-  .stock-icon-data { animation-name: study-stock-data-receive; }
-  .stock-hub { animation-name: study-stock-hub-receive; }
-  .study-motion-design { animation: study-design-drift 12s ease-in-out -2s infinite; }
-  .study-motion-design-disc { animation: study-disc-turn 10s ease-in-out -1.2s infinite; }
-  .study-motion-design-card { animation: study-design-card-drift 7.5s ease-in-out -1.7s infinite; }
+  .home-orbit {
+    transform-origin: 280px 260px;
+    animation: orbit-turn 32s linear infinite;
+  }
+  .trace-line {
+    stroke-dasharray: 100;
+    animation: trace-charge 7s ease-in-out infinite;
+  }
+  .panel-blue .trace-line {
+    animation-delay: -2.3s;
+  }
+  .panel-purple .trace-line {
+    animation-delay: -4.6s;
+  }
+  .core-light {
+    animation: core-breathe 5s ease-in-out infinite;
+  }
+  .home-slice {
+    animation: blade-pass 8s ease-in-out infinite;
+  }
+  .web-write {
+    stroke-dasharray: 100;
+    animation: interface-write 8s ease-in-out infinite;
+  }
+  .write-late {
+    animation-delay: 0.65s;
+  }
+  .web-scan {
+    animation: interface-scan 8s ease-in-out infinite;
+  }
+  .terminal-cursor {
+    animation: cursor-blink 1.5s steps(2, end) infinite;
+  }
+  .packet {
+    animation: packet-travel 5s linear infinite;
+  }
+  /* Shared clock, no independent delays:
+     order -> core 5–22%; core -> data 45–58%; team -> core 55–72%.
+     Glow peaks coincide with departure / leading-edge arrival, not the fade start.
+     Incoming signals reach the core every 4s; their soft envelopes stay separated.
+     Packet tails finish crossing the receiving edge before disappearing.
+     The core only responds to arrivals and rests throughout its outgoing transfer. */
+  .visual-stock .packet,
+  .stock-core,
+  .stock-node {
+    animation-duration: var(--stock-cycle);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+  }
+  .visual-stock .stock-packet-one {
+    animation-name: stock-order-transfer;
+  }
+  .visual-stock .stock-packet-two {
+    animation-name: stock-team-transfer;
+  }
+  .visual-stock .stock-packet-three {
+    animation-name: stock-data-transfer;
+  }
+  .stock-core {
+    animation-name: stock-core-events;
+  }
+  .stock-core,
+  .stock-node {
+    animation-timing-function: ease-in-out;
+  }
+  .node-order {
+    animation-name: stock-order-send;
+  }
+  .node-team {
+    animation-name: stock-team-send;
+  }
+  .node-data {
+    animation-name: stock-data-receive;
+  }
+  .design-orbit {
+    transform-origin: 280px 265px;
+    animation: orbit-turn 28s linear infinite;
+  }
+  .design-prism {
+    transform-origin: 280px 265px;
+    animation: prism-turn 12s ease-in-out infinite;
+  }
+  .prism-outline {
+    stroke-dasharray: 100;
+    animation: trace-charge 6s ease-in-out infinite;
+  }
+  .design-stroke {
+    animation: blade-pass 7s ease-in-out infinite;
+    animation-delay: -2s;
+  }
 }
-
-@keyframes study-web-write {
-  0%, 5%, 100% { stroke-dashoffset: 100; }
-  16%, 82% { stroke-dashoffset: 0; }
-  94% { stroke-dashoffset: 100; }
+@keyframes orbit-turn {
+  to {
+    transform: rotate(360deg);
+  }
 }
-@keyframes study-stock-order-send {
-  0% { stroke-dashoffset: var(--packet-length); opacity: 0; }
-  1%, 16% { opacity: 1; }
-  18%, 100% { stroke-dashoffset: -100; opacity: 0; }
+@keyframes trace-charge {
+  0%,
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 0.4;
+  }
+  35%,
+  70% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
-@keyframes study-stock-team-send {
-  0% { stroke-dashoffset: var(--packet-length); opacity: 0; }
-  1%, 24% { opacity: 1; }
-  26%, 100% { stroke-dashoffset: -100; opacity: 0; }
+@keyframes core-breathe {
+  0%,
+  100% {
+    opacity: 0.65;
+    filter: drop-shadow(0 0 3px #fff6);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #fff9);
+  }
 }
-@keyframes study-stock-hub-send {
-  0%, 28% { stroke-dashoffset: var(--packet-length); opacity: 0; }
-  29%, 46% { opacity: 1; }
-  48%, 100% { stroke-dashoffset: -100; opacity: 0; }
+@keyframes blade-pass {
+  0%,
+  30% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  65%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
 }
-@keyframes study-stock-data-send {
-  0%, 52% { stroke-dashoffset: var(--packet-length); opacity: 0; }
-  53%, 61% { opacity: 1; }
-  64%, 100% { stroke-dashoffset: -100; opacity: 0; }
+@keyframes interface-write {
+  0%,
+  8%,
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 0.25;
+  }
+  35%,
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
-@keyframes study-stock-order-return {
-  0%, 64% { stroke-dashoffset: var(--packet-length); opacity: 0; }
-  65%, 86% { opacity: 1; }
-  88%, 100% { stroke-dashoffset: -100; opacity: 0; }
+@keyframes interface-scan {
+  0%,
+  20%,
+  90%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(140px);
+    opacity: 0;
+  }
 }
-@keyframes study-stock-hub-receive {
-  0%, 16%, 36%, 46%, 68%, 100% { opacity: 1; filter: drop-shadow(0 0 0 transparent); }
-  22%, 54% { opacity: .9; filter: drop-shadow(0 0 7px currentColor); }
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }
-@keyframes study-stock-team-receive {
-  0%, 24%, 33%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
-  26% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+@keyframes packet-travel {
+  0%,
+  5% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  55%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
 }
-@keyframes study-stock-data-receive {
-  0%, 61%, 72%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
-  64% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+@keyframes stock-order-transfer {
+  0%,
+  5% {
+    stroke-dashoffset: 8;
+    opacity: 0;
+  }
+  5.001% {
+    stroke-dashoffset: 8;
+    opacity: 1;
+  }
+  22% {
+    stroke-dashoffset: -92;
+    opacity: 1;
+  }
+  23.36% {
+    stroke-dashoffset: -100;
+    opacity: 1;
+  }
+  23.361%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
 }
-@keyframes study-stock-order-receive {
-  0%, 86%, 96%, 100% { opacity: .7; filter: drop-shadow(0 0 0 transparent); }
-  88% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
+@keyframes stock-team-transfer {
+  0%,
+  55% {
+    stroke-dashoffset: 8;
+    opacity: 0;
+  }
+  55.001% {
+    stroke-dashoffset: 8;
+    opacity: 1;
+  }
+  72% {
+    stroke-dashoffset: -92;
+    opacity: 1;
+  }
+  73.36% {
+    stroke-dashoffset: -100;
+    opacity: 1;
+  }
+  73.361%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
 }
-@keyframes study-design-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(0, -6px) rotate(-2deg); }
+@keyframes stock-data-transfer {
+  0%,
+  45% {
+    stroke-dashoffset: 8;
+    opacity: 0;
+  }
+  45.001% {
+    stroke-dashoffset: 8;
+    opacity: 1;
+  }
+  58% {
+    stroke-dashoffset: -92;
+    opacity: 1;
+  }
+  59.04% {
+    stroke-dashoffset: -100;
+    opacity: 1;
+  }
+  59.041%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
 }
-@keyframes study-disc-turn {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(12deg); }
+@keyframes stock-order-send {
+  0%,
+  14%,
+  100% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  5% {
+    opacity: 0.96;
+    filter: var(--stock-pulse-glow);
+  }
 }
-@keyframes study-design-card-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(-6px, 8px) rotate(4deg); }
+@keyframes stock-team-send {
+  0%,
+  50%,
+  64%,
+  100% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  55% {
+    opacity: 0.96;
+    filter: var(--stock-pulse-glow);
+  }
+}
+@keyframes stock-data-receive {
+  0%,
+  52%,
+  70%,
+  100% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  58% {
+    opacity: 0.96;
+    filter: var(--stock-pulse-glow);
+  }
+}
+@keyframes stock-core-events {
+  0%,
+  16%,
+  42%,
+  66%,
+  92%,
+  100% {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  22%,
+  72% {
+    opacity: 0.96;
+    filter: var(--stock-pulse-glow);
+  }
+}
+@keyframes prism-turn {
+  0%,
+  100% {
+    transform: rotate(-5deg) scaleX(0.98);
+  }
+  50% {
+    transform: rotate(6deg) scaleX(1.04);
+  }
+}
+@media (max-width: 760px) {
+  .visual-study {
+    max-width: 450px;
+  }
+}
+.visual-study svg {
+  overflow: hidden;
 }

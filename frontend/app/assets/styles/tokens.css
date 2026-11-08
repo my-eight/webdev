@@ -1,24 +1,46 @@
 :root {
-  --color-paper: #f7f4ec;
-  --color-surface: #fffdf8;
-  --color-ink: #202523;
-  --color-muted: #5f6763;
-  --color-line: #d8d5cc;
-  --color-red: #a63d32;
-  --color-web: #3e5d49;
-  --color-stock: #294b68;
-  --color-design: #a63d32;
-  --accent: var(--color-red);
-  --font-sans: 'Manrope Variable', 'Segoe UI', sans-serif;
-  --font-serif: Georgia, 'Times New Roman', serif;
-  --font-mono: 'Cascadia Code', Consolas, monospace;
+  color-scheme: dark;
+  --color-paper: #050607;
+  --color-surface: #0d1013;
+  --color-ink: #f2f5f4;
+  --color-muted: #a2aab2;
+  --color-line: #252b31;
+  --color-web: #c4f541;
+  --color-stock: #5b9dff;
+  --color-design: #b38aff;
+  --accent: var(--color-web);
+  --font-sans: 'Exo 2 Variable', 'Segoe UI', sans-serif;
+  --font-display: 'HS Luna Obscura', 'Exo 2 Variable', sans-serif;
+  --hero-copy-size: 18px;
+  --body-copy-size: 18px;
+  --small-copy-size: 15px;
+  --card-title-size: 20px;
+  --section-title-size: clamp(28px, 3.3vw, 44px);
   --page-width: 1320px;
-  --header-height: 100px;
-  --gutter: clamp(22px, 4.4vw, 76px);
-  --space-section: clamp(64px, 7vw, 108px);
-  --ease: 180ms ease;
+  --header-height: 88px;
+  --mobile-action-space: 0px;
+  --gutter: clamp(20px, 4.2vw, 72px);
+  --space-section: clamp(48px, 5vw, 76px);
+  --ease: 200ms ease;
 }
-@media (max-width: 760px) { :root { --header-height: 72px; } }
-.theme-web { --accent: var(--color-web); }
-.theme-stock { --accent: var(--color-stock); }
-.theme-design { --accent: var(--color-design); }
+@media (max-width: 760px) {
+  :root {
+    --header-height: 72px;
+    --section-title-size: clamp(26px, 6.2vw, 38px);
+    --card-title-size: 18px;
+  }
+}
+.theme-web {
+  --accent: var(--color-web);
+}
+@media (max-width: 760px), (max-width: 1000px) and (max-height: 500px) {
+  :root {
+    --mobile-action-space: calc(79px + env(safe-area-inset-bottom, 0px));
+  }
+}
+.theme-stock {
+  --accent: var(--color-stock);
+}
+.theme-design {
+  --accent: var(--color-design);
+}

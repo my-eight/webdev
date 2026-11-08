@@ -1,0 +1,9 @@
+Exo 2 Regular, including Cyrillic glyphs
+Source: https://github.com/google/fonts/tree/main/ofl/exo2
+File: https://raw.githubusercontent.com/google/fonts/main/ofl/exo2/Exo2%5Bwght%5D.ttf
+Retrieved: 2026-11-08
+Static weight 400 instantiated from the upstream variable font using fontTools 4.60.1:
+  instantiateVariableFont(TTFont(source), {'wght': 400}, inplace=True).save(target)
+Redistributed under SIL Open Font License 1.1; see Exo2-OFL.txt
+Bundled for deterministic social previews without system fonts
+The website self-hosts Exo 2 Variable through @fontsource-variable/exo-2 5.3.0

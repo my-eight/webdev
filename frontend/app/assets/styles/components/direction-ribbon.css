@@ -1,0 +1,244 @@
+.direction-ribbon {
+  position: relative;
+  height: 88px;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--accent);
+  background: linear-gradient(180deg, #080b0d88, #050709dd);
+  border-block: 1px solid color-mix(in srgb, var(--accent) 17%, transparent);
+}
+.code-stream {
+  display: grid;
+  align-content: center;
+  height: 100%;
+  gap: 2px;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 96%, transparent);
+}
+.code-stream-line {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: 22px;
+  overflow: hidden;
+  white-space: pre;
+}
+.code-fragment {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+.code-fragment-text {
+  position: absolute;
+  top: 0;
+  opacity: 0.85;
+  transition: opacity 220ms ease;
+}
+.code-fragment-text.is-fading {
+  opacity: 0;
+  transition-duration: 1400ms;
+}
+.code-fragment-text.is-waiting {
+  opacity: 0;
+  transition-duration: 0ms;
+}
+.code-stream-cursor {
+  color: var(--color-ink);
+}
+@media (max-width: 1000px) {
+  .code-stream-line {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .code-fragment:nth-child(n + 3) {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .code-stream-line {
+    grid-template-columns: 1fr;
+  }
+  .code-fragment:nth-child(n + 2) {
+    display: none;
+  }
+}
+.data-stream {
+  display: grid;
+  align-content: center;
+  height: 100%;
+  gap: 6px;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 22px;
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+.data-stream-lane {
+  height: 30px;
+}
+.data-stream-track,
+.data-stream-group {
+  display: flex;
+  width: max-content;
+}
+.data-stream-track {
+  animation: data-packet-crossing 56s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+.data-stream-lane:nth-child(2) .data-stream-track {
+  animation-duration: 43s;
+  animation-delay: -17s;
+}
+.data-stream.is-playing .data-stream-track {
+  animation-play-state: running;
+}
+.data-packet {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 6px;
+  height: 30px;
+  white-space: nowrap;
+  border-left: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  background: linear-gradient(100deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent);
+}
+.data-packet svg {
+  width: 20px;
+  height: 24px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.data-packet .data-transfer {
+  width: 25px;
+  height: 12px;
+  opacity: 0.5;
+}
+.data-braces {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+.packet-json > span:last-of-type,
+.packet-document > span {
+  color: var(--color-ink);
+}
+.packet-response {
+  letter-spacing: 0.04em;
+}
+@keyframes data-packet-crossing {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .data-stream-track {
+    animation: none;
+    will-change: auto;
+  }
+}
+.sketch-stream {
+  height: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+.sketch-stream-track,
+.sketch-stream-group {
+  display: flex;
+  width: max-content;
+  height: 100%;
+}
+.sketch-stream-track {
+  animation: sketch-page-crossing 110s linear infinite;
+  will-change: transform;
+}
+.sketch-study {
+  display: grid;
+  align-items: center;
+  width: 116px;
+  flex-shrink: 0;
+}
+.sketch-study svg {
+  width: 112px;
+  height: 76px;
+  transform: rotate(var(--sketch-tilt));
+  animation: sketch-study-life var(--sketch-period) linear var(--sketch-phase) infinite;
+}
+.sketch-guide {
+  stroke: var(--accent);
+  stroke-width: 0.7;
+  stroke-dasharray: 2 5;
+  opacity: 0.22;
+}
+.sketch-stroke {
+  stroke: var(--accent);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  animation: sketch-stroke-draw var(--sketch-period) ease-in-out infinite both;
+  animation-delay: calc(var(--sketch-phase) + var(--stroke-index) * 0.24s);
+}
+.sketch-stroke:nth-of-type(3) {
+  stroke: var(--color-ink);
+  stroke-opacity: 0.7;
+  stroke-width: 1.2;
+}
+.sketch-stream-track,
+.sketch-study svg,
+.sketch-stroke {
+  animation-play-state: paused;
+}
+.sketch-stream.is-playing .sketch-stream-track,
+.sketch-stream.is-playing .sketch-study svg,
+.sketch-stream.is-playing .sketch-stroke {
+  animation-play-state: running;
+}
+@keyframes sketch-page-crossing {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes sketch-study-life {
+  0%, 100% {
+    opacity: 0;
+  }
+  8%, 80% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0;
+  }
+}
+@keyframes sketch-stroke-draw {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  45%, 100% {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sketch-stream-track,
+  .sketch-study svg,
+  .sketch-stroke {
+    animation: none;
+    will-change: auto;
+  }
+  .sketch-study svg {
+    opacity: 1;
+  }
+  .sketch-stroke {
+    stroke-dasharray: none;
+  }
+}

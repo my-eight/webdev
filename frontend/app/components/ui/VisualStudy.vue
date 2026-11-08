@@ -1,126 +1,198 @@
 <script setup lang="ts">
-import { useId } from 'vue'
 import type { Direction } from '~/types/service'
-defineProps<{ theme: Direction | 'home' }>()
-const stockArrowId = `stock-arrow-${useId()}`
+const props = defineProps<{ theme: Direction | 'home' }>()
+const id = useId().replaceAll(':', '')
+const labels = {
+  home: 'Три направления соединяются в единую цифровую систему',
+  web: 'Сборка интерфейса и обмен данными с сервером',
+  stock: 'Синхронизация заказов, команды и данных',
+  design: 'Световые грани собираются в визуальный знак',
+}
 </script>
-
 <template>
-  <figure class="visual-study" :class="`study-${theme}`">
-    <svg v-if="theme === 'home'" viewBox="0 0 480 480" fill="none" aria-hidden="true">
-      <path class="study-grid" d="M0 120h480M0 240h480M0 360h480M120 0v480M240 0v480M360 0v480" />
-      <circle cx="240" cy="240" r="176" class="study-faint" />
-      <path d="M64 240a176 176 0 0 1 352 0" class="study-arch" />
-      <rect x="129" y="127" width="224" height="224" class="study-paper" transform="rotate(-12 241 239)" />
-      <path class="study-ink" d="M156 178h168M156 192h73M156 222h168M156 236h118M156 290h74" />
-      <rect x="260" y="263" width="64" height="64" fill="var(--color-web)" />
-      <circle cx="188" cy="271" r="26" fill="var(--color-stock)" />
-      <rect x="308" y="103" width="38" height="38" fill="#A63D32" transform="rotate(-12 327 122)" />
-      <path class="study-ink" d="M240 416h176M416 240v176" />
-      <path class="study-ticks" d="M56 56h20M66 46v20M414 56h20M424 46v20M56 424h20M66 414v20M414 424h20M424 414v20" />
-      <text x="29" y="253" transform="rotate(-90 29 253)" class="study-type">ФОРМА / ФУНКЦИЯ / ДЕТАЛИ</text>
-    </svg>
-    <svg v-else-if="theme === 'web'" viewBox="0 0 480 480" fill="none" aria-hidden="true">
-      <path class="study-grid" d="M0 120h480M0 240h480M0 360h480M120 0v480M240 0v480M360 0v480" />
-      <g class="web-build">
-        <rect x="50" y="99" width="336" height="251" class="study-paper" />
-        <path class="study-ink" d="M50 132h336M65 116h4m8 0h4m8 0h4" />
-        <g class="study-ink">
-          <path class="web-reveal" pathLength="100" style="--write-delay: 0s" d="M77 168h176" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: .18s" d="M77 180h124" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: .38s" d="M77 215h93" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: .55s" d="M77 226h107" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: .72s" d="M77 237h77" />
-        </g>
-        <rect x="77" y="276" width="83" height="28" fill="currentColor" />
-        <g class="web-image" stroke="currentColor">
-          <rect class="web-reveal" pathLength="100" style="--write-delay: .8s" x="277" y="164" width="81" height="81" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 1.1s" d="M277 164l81 81m0-81l-81 81" />
-        </g>
-        <g class="web-code-card" stroke="currentColor">
-          <rect x="246" y="282" width="161" height="105" fill="#F7F4EC" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 1.8s" d="M264 305h75" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 2s" d="M264 319h123" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 2.2s" d="M264 333h85" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 2.4s" d="M264 347h106" />
-          <path class="web-reveal" pathLength="100" style="--write-delay: 2.6s" d="M264 361h52" />
-        </g>
-        <path class="study-ink" d="M133 350v53h110M386 214h40v68" stroke-dasharray="3 5" />
-        <circle cx="133" cy="403" r="4" fill="currentColor" />
-      </g>
-      <path class="study-ticks" d="M30 57h20M40 47v20M420 417h20m-10-10v20" />
-      <text x="51" y="76" class="study-type">ИНТЕРФЕЙС / ДАННЫЕ / СВЯЗИ</text>
-      <text x="266" y="418" class="study-type">ПРОДУМАННАЯ СИСТЕМА</text>
-    </svg>
-    <svg v-else-if="theme === 'stock'" viewBox="0 0 480 480" fill="none" aria-hidden="true">
+  <figure class="visual-study" :class="`visual-${theme}`" role="img" :aria-label="labels[props.theme]">
+    <svg viewBox="0 0 560 520" fill="none" aria-hidden="true">
       <defs>
-        <marker :id="stockArrowId" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-          <path class="stock-arrowhead" d="M1 1l6 3-6 3" />
-        </marker>
+        <linearGradient :id="`${id}-metal`" x1="100" y1="80" x2="440" y2="430" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#28313d" />
+          <stop offset=".46" stop-color="#0c121b" />
+          <stop offset="1" stop-color="#030609" />
+        </linearGradient>
+        <linearGradient :id="`${id}-light`" x1="120" y1="100" x2="420" y2="430" gradientUnits="userSpaceOnUse">
+          <stop stop-color="currentColor" stop-opacity=".7" />
+          <stop offset=".5" stop-color="currentColor" stop-opacity=".06" />
+          <stop offset="1" stop-color="currentColor" stop-opacity=".35" />
+        </linearGradient>
+        <linearGradient :id="`${id}-blade`">
+          <stop stop-color="currentColor" stop-opacity="0" />
+          <stop offset=".6" stop-color="currentColor" />
+          <stop offset="1" stop-color="#fff" />
+        </linearGradient>
+        <radialGradient :id="`${id}-aura`">
+          <stop stop-color="currentColor" stop-opacity=".22" />
+          <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+        </radialGradient>
       </defs>
-      <path class="study-grid" d="M0 120h480M0 240h480M0 360h480M120 0v480M240 0v480M360 0v480" />
-      <g class="stock-network">
-        <g class="stock-connections">
-          <path d="M160 145H240V175" />
-          <path d="M80 184V295" :marker-end="`url(#${stockArrowId})`" />
-          <path d="M160 336H240V305" />
-          <path d="M305 240H324" :marker-end="`url(#${stockArrowId})`" />
-        </g>
-        <g class="stock-flows">
-          <path class="stock-flow stock-flow-order" pathLength="100" d="M160 145H240V175" />
-          <path class="stock-flow stock-flow-team" pathLength="100" d="M80 184V295" />
-          <path class="stock-flow stock-flow-hub" pathLength="100" d="M160 336H240V305" />
-          <path class="stock-flow stock-flow-data" pathLength="100" d="M305 240H324" />
-          <path class="stock-flow stock-flow-order-return" pathLength="100" d="M240 175V145H160" />
-        </g>
-        <rect x="40" y="108" width="120" height="76" class="study-paper" />
-        <text x="58" y="146" dominant-baseline="central" class="study-label">Заказ</text>
-        <g class="stock-icon stock-icon-order" transform="translate(128 136)">
-          <path d="M2 1h9l5 5v13H2zM11 1v5h5M5 10h8M5 14h6" />
-        </g>
-        <g class="stock-hub">
-          <circle cx="240" cy="240" r="65" fill="currentColor" />
-          <text x="240" y="240" text-anchor="middle" dominant-baseline="central" class="study-label study-label-inverse">МойСклад</text>
-        </g>
-        <rect x="328" y="203" width="120" height="76" class="study-paper" />
-        <text x="346" y="241" dominant-baseline="central" class="study-label">Данные</text>
-        <g class="stock-icon stock-icon-data" transform="translate(416 231)">
-          <ellipse cx="10" cy="4" rx="8" ry="3" />
-          <path d="M2 4v12c0 4 16 4 16 0V4M2 10c0 4 16 4 16 0" />
-        </g>
-        <rect x="40" y="299" width="120" height="76" class="study-paper" />
-        <text x="58" y="337" dominant-baseline="central" class="study-label">Команда</text>
-        <g class="stock-icon stock-icon-team" transform="translate(127 327)">
-          <circle cx="7" cy="6" r="3" />
-          <path d="M1 18v-2a6 6 0 0 1 12 0v2M14 4a3 3 0 0 1 0 6M16 12a5 5 0 0 1 3 4v2" />
-        </g>
-        <circle cx="240" cy="145" r="5" fill="currentColor" /><circle cx="240" cy="336" r="5" fill="currentColor" />
+      <ellipse cx="285" cy="270" rx="254" ry="238" :fill="`url(#${id}-aura)`" />
+      <g class="art-guides" stroke="currentColor">
+        <path d="M25 114V82h32m446 0h32v32M25 406v32h32m446 0h32v-32" />
+        <path d="M280 35v18m0 414v18M5 260h18m514 0h18" />
       </g>
-      <path class="study-ticks" d="M30 57h20M40 47v20M420 417h20m-10-10v20" />
-      <text x="41" y="77" class="study-type">ПРОЦЕССЫ / КОМАНДА / ЯСНОСТЬ</text>
-      <text x="240" y="418" class="study-type">ВСЁ ВЗАИМОСВЯЗАНО</text>
-    </svg>
-    <svg v-else viewBox="0 0 480 480" fill="none" aria-hidden="true">
-      <path class="study-grid" d="M0 120h480M0 240h480M0 360h480M120 0v480M240 0v480M360 0v480" />
-      <g class="study-motion study-motion-design">
-        <rect x="89" y="93" width="278" height="294" class="study-paper" transform="rotate(8 228 240)" />
-        <g class="study-motion study-motion-design-disc">
-          <circle cx="241" cy="224" r="100" fill="currentColor" />
-          <path d="M190 119v219M211 107v238M232 107v244M253 109v247M274 119v236M295 138v210" stroke="#F7F4EC" stroke-width="3" />
+      <template v-if="theme === 'home'">
+        <g class="home-orbit" stroke="currentColor">
+          <ellipse cx="280" cy="260" rx="230" ry="192" transform="rotate(-28 280 260)" stroke-dasharray="105 24 3 24" />
+          <ellipse cx="280" cy="260" rx="238" ry="205" transform="rotate(-28 280 260)" opacity=".2" />
         </g>
-        <g class="study-motion study-motion-detail study-motion-design-card">
-          <rect x="83" y="261" width="104" height="104" fill="#202523" transform="rotate(-8 135 313)" />
-          <path stroke="#F7F4EC" d="M114 317l25-29 23 33m-43-10l36 5" />
+        <path d="m101 242 179-127 179 127-179 180Z" :fill="`url(#${id}-metal)`" stroke="#3d4754" />
+        <g class="home-panel panel-lime">
+          <path d="m280 88-153 88 25 162 104-68Z" fill="#13200b" stroke="#c4f541" />
+          <path d="m280 88-24 182-104 68 37-132Z" fill="#c4f541" fill-opacity=".15" />
+          <path class="trace-line" d="m260 123-24 132-60 41" pathLength="100" stroke="#c4f541" stroke-width="3" />
+          <path d="m188 203 45-27-8 51-30 19Z" fill="#c4f541" fill-opacity=".8" />
         </g>
-        <circle cx="350" cy="126" r="30" stroke="#202523" />
-        <path class="study-ink" d="M262 367h104M262 377h62" />
-      </g>
-      <path class="study-ticks" d="M30 57h20M40 47v20M420 417h20m-10-10v20" />
-      <text x="64" y="54" class="study-type">ИДЕЯ / ФОРМА / ХАРАКТЕР</text>
-      <text x="250" y="433" class="study-type">ПОИСК ВИЗУАЛЬНОГО РЕШЕНИЯ</text>
+        <g class="home-panel panel-blue">
+          <path d="m298 112 146 86-31 163-103-79Z" fill="#08182d" stroke="#5b9dff" />
+          <path d="m298 112 12 170 103 79-35-139Z" fill="#5b9dff" fill-opacity=".16" />
+          <path class="trace-line" d="m320 147 14 119 54 51" pathLength="100" stroke="#5b9dff" stroke-width="3" />
+          <path d="m354 194 29 18 8 37-35-21Z" fill="#5b9dff" fill-opacity=".8" />
+        </g>
+        <g class="home-panel panel-purple">
+          <path d="m161 357 119-76 121 90-121 85Z" fill="#211134" stroke="#b38aff" />
+          <path d="m161 357 119 40 121-26-121 85Z" fill="#b38aff" fill-opacity=".17" />
+          <path class="trace-line" d="m190 362 90 60 88-55" pathLength="100" stroke="#b38aff" stroke-width="3" />
+        </g>
+        <path d="m280 220 32 37-32 38-28-38Z" fill="#f2f5f4" class="core-light" />
+        <path d="m280 207 44 50-44 50-42-50Z" stroke="#ffffff70" />
+        <path d="M87 396 478 108" stroke="#f2f5f4" opacity=".25" />
+        <path class="home-slice" d="M87 396 478 108" :stroke="`url(#${id}-blade)`" stroke-width="2" pathLength="100" />
+      </template>
+      <template v-else-if="theme === 'web'">
+        <g class="web-interface">
+          <path d="m90 155 284-62 104 57-283 65Z" fill="#111a0a" stroke="currentColor" opacity=".45" />
+          <path d="m90 155 105 60v218L90 370Z" :fill="`url(#${id}-metal)`" stroke="#344029" />
+          <path d="m195 215 283-65v218l-283 65Z" fill="#080d07" stroke="currentColor" stroke-opacity=".7" />
+          <path d="m195 249 283-65" stroke="currentColor" opacity=".4" />
+          <path d="m214 232 5-1m11-3 5-1m11-3 5-1" stroke="currentColor" stroke-width="3" />
+          <path
+            class="web-write"
+            d="m223 287 83-19m-83 34 115-26m-115 41 62-14m-62 30 96-22"
+            stroke="currentColor"
+            stroke-width="3"
+            pathLength="100"
+          />
+          <path
+            class="web-write write-late"
+            d="m354 257 94-22v71l-94 22Z M354 257l94 49M448 235l-94 93"
+            stroke="currentColor"
+            pathLength="100"
+          />
+          <path d="m223 367 70-16v22l-70 16Z" fill="currentColor" opacity=".8" />
+          <path class="web-scan" d="m200 272 272-62" stroke="currentColor" stroke-width="2" />
+          <path d="m114 204 45 27m-45-3 45 27m-45-3 26 16m-26 8 40 24m-40 0 45 27" stroke="#6c8550" stroke-width="2" />
+        </g>
+        <g class="web-terminal">
+          <path d="m257 349 151 19v91l-151-19Z" fill="#0b1110" stroke="currentColor" />
+          <path
+            class="web-write write-late"
+            d="m278 373 18 12-18 6m32 0 23 3m-55 17 66 8m-66 4 101 13"
+            stroke="currentColor"
+            stroke-width="2"
+            pathLength="100"
+          />
+          <path d="m359 401 14 2" stroke="currentColor" stroke-width="4" class="terminal-cursor" />
+        </g>
+        <path d="M142 396v45h85" stroke="currentColor" opacity=".25" />
+        <path class="packet" d="M142 396v45h85" stroke="currentColor" stroke-width="3" pathLength="100" />
+      </template>
+      <template v-else-if="theme === 'stock'">
+        <g class="stock-circuits" stroke="currentColor">
+          <path d="M180 150h63v46M182 355h61v-28M357 260h54" opacity=".3" />
+          <path class="packet stock-packet-one" d="M180 150h63v46" stroke-width="3" pathLength="100" />
+          <path class="packet stock-packet-two" d="M182 355h61v-28" stroke-width="3" pathLength="100" />
+          <path class="packet stock-packet-three" d="M357 260h54" stroke-width="3" pathLength="100" />
+        </g>
+        <g class="stock-core">
+          <path d="m281 174 76 44v87l-76 44-76-44v-87Z" :fill="`url(#${id}-metal)`" stroke="currentColor" />
+          <path
+            d="m281 191 61 35v70l-61 35-61-35v-70Z"
+            :fill="`url(#${id}-light)`"
+            stroke="currentColor"
+            stroke-opacity=".35"
+          />
+          <path
+            d="m249 241 32-18 32 18-32 19Z m0 0v38l32 19 32-19v-38m-32 19v38"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path d="m281 155 93 54v106l-93 54-93-54V209Z" stroke="currentColor" opacity=".15" />
+        </g>
+        <g class="stock-node node-order">
+          <path d="M65 101h100l15 15v71H65Z" fill="#0b1321" stroke="currentColor" />
+          <path d="M102 126h26l9 9v28h-35Z m26-28h9m-28 8h20m-20 8h14" stroke="currentColor" stroke-width="2" />
+        </g>
+        <g class="stock-node node-team">
+          <path d="M54 314h113l15 15v70H54Z" fill="#0b1321" stroke="currentColor" />
+          <circle cx="111" cy="345" r="9" stroke="currentColor" stroke-width="2" />
+          <path d="M91 376v-8c0-13 40-13 40 0v8m0-32c14 0 17 25 13 31" stroke="currentColor" stroke-width="2" />
+        </g>
+        <g class="stock-node node-data">
+          <path d="M411 218h89l15 15v78H411Z" fill="#0b1321" stroke="currentColor" />
+          <ellipse cx="463" cy="245" rx="19" ry="7" stroke="currentColor" stroke-width="2" />
+          <path d="M444 245v31c0 10 38 10 38 0v-31m-38 15c0 10 38 10 38 0" stroke="currentColor" stroke-width="2" />
+        </g>
+        <path d="m225 130 56-32 126 73m-69 224-57 32-75-43" stroke="currentColor" opacity=".2" />
+        <circle cx="243" cy="150" r="4" fill="currentColor" />
+        <circle cx="243" cy="355" r="4" fill="currentColor" />
+      </template>
+      <template v-else>
+        <g class="design-orbit">
+          <ellipse
+            cx="280"
+            cy="265"
+            rx="223"
+            ry="119"
+            transform="rotate(-35 280 265)"
+            stroke="currentColor"
+            opacity=".45"
+          />
+          <ellipse
+            cx="280"
+            cy="265"
+            rx="238"
+            ry="132"
+            transform="rotate(-35 280 265)"
+            stroke="currentColor"
+            opacity=".15"
+            stroke-dasharray="5 18"
+          />
+          <circle cx="473" cy="151" r="6" fill="currentColor" />
+        </g>
+        <g class="design-prism">
+          <path d="m280 91 116 78-28 164-88 104-105-103-15-165Z" :fill="`url(#${id}-metal)`" stroke="currentColor" />
+          <path d="m280 91-22 142-98-64Z" fill="#d6bbff" fill-opacity=".85" />
+          <path d="m280 91 116 78-138 64Z" fill="#7a41ca" fill-opacity=".6" />
+          <path d="m160 169 98 64-83 101Z" fill="#462576" />
+          <path d="m258 233 138-64-28 164Z" fill="#aa70ff" fill-opacity=".5" />
+          <path d="m258 233 110 100-88 104Z" fill="#532792" />
+          <path d="m258 233 22 204-105-103Z" fill="#b38aff" fill-opacity=".7" />
+          <path
+            class="prism-outline"
+            d="m280 91-22 142-98-64m98 64 138-64m-138 64-83 101m83-101 110 100m-110-100 22 204"
+            stroke="#eadcff"
+            stroke-opacity=".6"
+            pathLength="100"
+          />
+        </g>
+        <path
+          class="design-stroke"
+          d="M83 392 475 110"
+          :stroke="`url(#${id}-blade)`"
+          stroke-width="3"
+          pathLength="100"
+        />
+        <path d="m430 353 13-12 12 12-12 13Z" fill="currentColor" opacity=".7" />
+      </template>
     </svg>
-    <figcaption><span>{{ theme === 'home' ? 'Разные задачи. Один подход.' : theme === 'web' ? 'Интерфейс, данные, связи.' : theme === 'stock' ? 'У каждого процесса — своё место.' : 'Идея. Композиция. Характер.' }}</span><span class="study-caption-mark" aria-hidden="true">↗</span></figcaption>
   </figure>
 </template>
-
 <style src="~/assets/styles/components/visual-study.css" />

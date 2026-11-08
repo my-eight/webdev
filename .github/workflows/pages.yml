@@ -45,6 +45,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Проверка TypeScript
         run: pnpm typecheck
+      - name: Проверка типографики и сохранности адресов
+        run: pnpm check:typography
       - name: Проверка воспроизводимости превью
         run: pnpm check:social
       - name: Сборка статических страниц

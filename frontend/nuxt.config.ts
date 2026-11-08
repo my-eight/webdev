@@ -16,16 +16,12 @@ export default defineNuxtConfig({
   vite: { cacheDir: `.cache/nuxt/${buildMode}` },
   ssr: true,
   features: { inlineStyles: false },
-  css: [
-    '@fontsource-variable/manrope/wght.css',
-    '~/assets/styles/tokens.css',
-    '~/assets/styles/global.css',
-  ],
+  css: ['@fontsource-variable/exo-2/wght.css', '~/assets/styles/tokens.css', '~/assets/styles/global.css'],
   app: {
     baseURL,
     head: {
       htmlAttrs: { lang: 'ru' },
-      meta: [{ name: 'theme-color', content: '#F7F4EC' }],
+      meta: [{ name: 'theme-color', content: '#050607' }],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: publicPath('/favicon.svg', baseURL) }],
     },
   },
@@ -49,17 +45,38 @@ export default defineNuxtConfig({
     output: { dir: isGitHubPages ? '.output-pages' : '.output' },
     // Nuxt supplies file: URLs for its prerender storage driver on Windows.
     // Rollup needs a filesystem ID to bundle that module instead of externalizing it.
-    ...(process.platform === 'win32' ? { rollupConfig: { plugins: [{
-      name: 'resolve-windows-file-urls',
-      resolveId(source: string) {
-        if (source.startsWith('file:')) return fileURLToPath(source).replaceAll('\\', '/')
-      },
-    }] } } : {}),
+    ...(process.platform === 'win32'
+      ? {
+          rollupConfig: {
+            plugins: [
+              {
+                name: 'resolve-windows-file-urls',
+                resolveId(source: string) {
+                  if (source.startsWith('file:')) return fileURLToPath(source).replaceAll('\\', '/')
+                },
+              },
+            ],
+          },
+        }
+      : {}),
     compressPublicAssets: true,
-    ...(isGitHubPages ? { prerender: {
-      crawlLinks: true,
-      failOnError: true,
-      routes: [...publicPaths, '/robots.txt', ...(allowsIndexing({ siteUrl: process.env.NUXT_PUBLIC_SITE_URL, indexable: process.env.NUXT_PUBLIC_INDEXABLE }) ? ['/sitemap.xml'] : [])],
-    } } : {}),
+    ...(isGitHubPages
+      ? {
+          prerender: {
+            crawlLinks: true,
+            failOnError: true,
+            routes: [
+              ...publicPaths,
+              '/robots.txt',
+              ...(allowsIndexing({
+                siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+                indexable: process.env.NUXT_PUBLIC_INDEXABLE,
+              })
+                ? ['/sitemap.xml']
+                : []),
+            ],
+          },
+        }
+      : {}),
   },
 })

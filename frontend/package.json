@@ -17,10 +17,11 @@
     "check:seo": "node scripts/check-seo.mjs",
     "check:release": "node scripts/check-release.mjs",
     "generate:social": "node scripts/generate-social.mjs",
-    "check:social": "node scripts/generate-social.mjs --check"
+    "check:social": "node scripts/generate-social.mjs --check",
+    "check:typography": "node scripts/check-typography.mjs"
   },
   "dependencies": {
-    "@fontsource-variable/manrope": "5.3.0",
+    "@fontsource-variable/exo-2": "5.3.0",
     "nuxt": "4.6.4",
     "vue": "3.5.45",
     "vue-router": "5.4.0"

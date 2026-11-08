@@ -2,18 +2,27 @@
 import type { ServicePageData } from '~/types/service'
 defineProps<{ page: ServicePageData }>()
 </script>
-
 <template>
   <section class="service-hero container" aria-labelledby="service-title">
     <div class="hero-copy">
-      <div class="eyebrow direction-label"><span class="small-square" />{{ page.eyebrow }}</div>
-      <h1 id="service-title">{{ page.heading }}<br><em>{{ page.emphasis }}</em></h1>
-      <p class="hero-lead">{{ page.lead }}</p>
-      <p class="hero-detail">{{ page.detail }}</p>
-      <div class="hero-actions"><a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a><a :href="page.secondary.to" class="text-link"><span class="text-link-label">{{ page.secondary.label }}</span><span class="text-link-arrow" aria-hidden="true">↓</span></a></div>
-      <p class="hero-note">{{ page.note }}</p>
+      <h1 id="service-title">
+        <span class="hero-title-label">{{ typography(page.heading) + ' ' }}</span>
+        <em class="hero-title-message">
+          <span v-for="(line, index) in page.emphasis" :key="index" class="hero-title-line">{{ typography(line) + ' ' }}</span>
+        </em>
+      </h1>
+      <div class="hero-description">
+        <p class="hero-lead">{{ typography(page.lead) }}</p>
+        <p class="hero-detail">{{ typography(page.detail) }}</p>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a
+        ><a :href="page.secondary.to" class="text-link"
+          ><span class="text-link-label">{{ typography(page.secondary.label) }}</span
+          ><span class="text-link-arrow" aria-hidden="true">↓</span></a
+        >
+      </div>
     </div>
     <UiVisualStudy :theme="page.theme" />
-    <div class="hero-trust"><span>Лично. По договору.</span><ul aria-label="Порядок оформления работы"><li>Согласованное задание</li><li>Акт приёмки</li><li>Чек</li></ul><span class="hero-geography">Россия · Удалённо</span></div>
   </section>
 </template>

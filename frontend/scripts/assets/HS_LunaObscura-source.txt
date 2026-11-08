@@ -1,0 +1,6 @@
+HS_LunaObscura v1.0 — Headspace Agency, 2026.
+Official source: https://lunaobscura.headspace.ru/
+Original WOFF2: https://lunaobscura.headspace.ru/hs_lunaobscura/HS_LunaObscura.woff2
+License: SIL Open Font License 1.1, included alongside the unmodified font.
+Downloaded 2026-11-08. https://headspace.ru
+TTF for the image renderer converted losslessly from the original WOFF2 using fontTools 4.60.1; glyphs and font names unchanged. No conversion tool is needed for builds.

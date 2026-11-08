@@ -1,0 +1,53 @@
+[data-reveal='pending'] {
+  opacity: 0;
+}
+.interactive-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  --grid-x: -400px;
+  --grid-y: -400px;
+  mask-image: radial-gradient(circle 260px at var(--grid-x) var(--grid-y), #000 0%, #0009 34%, transparent 100%);
+}
+.interactive-grid.is-active {
+  opacity: 1;
+  transition-duration: 300ms;
+}
+.interactive-grid-lens {
+  position: absolute;
+  inset: 0;
+  --grid-point-color: color-mix(in srgb, var(--accent) 75%, transparent);
+  --grid-line-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  opacity: 0.65;
+}
+.theme-home .interactive-grid-lens {
+  background-image:
+    linear-gradient(115deg, var(--color-web) 10%, var(--color-stock) 52%, var(--color-design) 90%);
+  background-size: 100% 100%;
+  background-position: center top;
+  mask-image:
+    radial-gradient(circle at 1px 1px, #000b 2px, transparent 2.5px),
+    linear-gradient(#0005 1px, transparent 1px),
+    linear-gradient(90deg, #0005 1px, transparent 1px);
+  mask-composite: add;
+  mask-size: var(--grid-size) var(--grid-size);
+  mask-position: center var(--grid-offset-y, 0px);
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .interactive-grid.is-active .interactive-grid-lens {
+    animation: grid-shimmer 2.8s ease-in-out infinite;
+  }
+}
+@keyframes grid-shimmer {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.8; }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .interactive-grid { display: none; }
+}
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal='pending'] { opacity: 1; }
+}
