@@ -19,6 +19,8 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div ref="root" class="neon-divider" :class="[`neon-${theme}`, { 'is-playing': playing }]" aria-hidden="true"><i /></div>
+  <div ref="root" class="neon-divider" :class="[`neon-${theme}`, { 'is-playing': playing }]" aria-hidden="true">
+    <i v-for="segment in 7" :key="segment" :style="{ '--segment': segment - 1 }" />
+  </div>
 </template>
 <style src="~/assets/styles/components/neon-divider.css" />

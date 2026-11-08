@@ -33,10 +33,7 @@
   container-type: size;
   z-index: 0;
   pointer-events: none;
-  --hat-shape: polygon(12% 3%, 82% 3%, 85% 36%, 12% 36%);
 }
-.samurai-stock { --hat-shape: polygon(11% 5%, 90% 5%, 90% 43%, 11% 43%); }
-.samurai-design { --hat-shape: polygon(20% 4%, 91% 4%, 91% 46%, 20% 46%); }
 .samurai-cutout {
   position: relative;
   width: min(100cqw, calc(100cqh * var(--portrait-ratio)));
@@ -54,11 +51,10 @@
   pointer-events: none;
 }
 .samurai-image { filter: drop-shadow(3px 0 2px color-mix(in srgb, var(--accent) 24%, transparent)) drop-shadow(10px 2px 18px color-mix(in srgb, var(--accent) 11%, transparent)); }
-.samurai-mark { color: var(--accent); opacity: .82; filter: drop-shadow(0 0 2px color-mix(in srgb, var(--accent) 55%, transparent)); }
+.samurai-mark { color: var(--accent); }
 .samurai-reflection {
   opacity: 0;
   filter: brightness(2.2);
-  clip-path: var(--hat-shape);
   mix-blend-mode: screen;
   mask-image: linear-gradient(110deg, transparent 45%, #000 50%, transparent 55%);
   mask-size: 300% 100%;
