@@ -81,8 +81,11 @@
   position: absolute;
   right: 28px;
   top: 30px;
-  font-size: 24px;
+  --arrow-size: 24px;
   color: var(--accent);
+}
+.direction-symbol .ui-arrow {
+  --arrow-size: 1em;
 }
 .direction-card h3 {
   font-size: var(--card-title-size);

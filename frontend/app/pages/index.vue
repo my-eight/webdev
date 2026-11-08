@@ -15,7 +15,7 @@ const directions = [
     title: 'МойСклад',
     to: '/moysklad',
     description: 'Учёт, обмен данными и автоматизация — система, в которой удобно работать',
-    symbol: '↔',
+    symbol: null,
   },
   {
     theme: 'design',
@@ -40,7 +40,7 @@ const directions = [
         <p class="home-lead">
           {{ typography('Для вашего бизнеса и его следующего шага') }}
         </p>
-        <a href="#directions" class="button button-primary">Выбрать направление <span aria-hidden="true">↓</span></a>
+        <a href="#directions" class="button button-primary">Выбрать направление <UiArrow direction="down" /></a>
       </div>
       <UiSamuraiEnsemble />
     </section>
@@ -57,11 +57,11 @@ const directions = [
           :to="item.to"
           class="direction-card"
           :class="`theme-${item.theme}`"
-          ><span class="direction-symbol" aria-hidden="true">{{ item.symbol }}</span
-          ><span class="direction-arrow" aria-hidden="true">↗</span>
+          ><span class="direction-symbol" aria-hidden="true"><UiArrow v-if="item.theme === 'stock'" direction="both" /><template v-else>{{ item.symbol }}</template></span
+          ><UiArrow class="direction-arrow" />
           <h3>{{ typography(item.title) }}</h3>
           <p>{{ typography(item.description) }}</p>
-          <span class="direction-more">Подробнее <span aria-hidden="true">→</span></span></NuxtLink
+          <span class="direction-more">Подробнее <UiArrow direction="right" /></span></NuxtLink
         >
       </div>
     </section>

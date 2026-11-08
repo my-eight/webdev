@@ -89,10 +89,7 @@
   overflow-wrap: anywhere;
 }
 .contact-method-arrow {
-  font-size: 23px;
-  line-height: 1;
-  width: 18px;
-  flex: 0 0 18px;
+  --arrow-size: 20px;
   color: var(--accent);
 }
 .contact-method:hover {

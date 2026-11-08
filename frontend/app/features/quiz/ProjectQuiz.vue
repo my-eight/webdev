@@ -102,7 +102,7 @@ async function reset() {
             </div>
             <div class="quiz-controls">
               <button class="button quiz-back" type="button" :disabled="step === 0" @click="moveTo(step - 1)">Назад</button>
-              <button class="button button-primary quiz-next" type="submit" :disabled="!canContinue">{{ step === quiz.questions.length - 1 ? 'Отправить' : 'Далее' }} <span aria-hidden="true">→</span></button>
+              <button class="button button-primary quiz-next" type="submit" :disabled="!canContinue">{{ step === quiz.questions.length - 1 ? 'Отправить' : 'Далее' }} <UiArrow direction="right" /></button>
             </div>
             <p class="quiz-mobile-demo">{{ typography('Демо-режим — без отправки') }}</p>
           </form>
@@ -114,7 +114,7 @@ async function reset() {
           <p>Ваш номер <strong class="quiz-receipt">{{ receipt }}</strong></p>
           <p>{{ typography('Ответ поступит в течение одного рабочего дня') }}</p>
           <p class="quiz-result-note">{{ typography('Это демонстрация — данные не отправлялись, ожидать ответа пока не нужно') }}</p>
-          <button class="button quiz-back" type="button" @click="reset">{{ typography('Пройти ещё раз') }} <span aria-hidden="true">↗</span></button>
+          <button class="button quiz-back" type="button" @click="reset">{{ typography('Пройти ещё раз') }} <UiArrow /></button>
         </div>
       </div>
     </div>

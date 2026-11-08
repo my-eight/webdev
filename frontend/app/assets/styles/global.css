@@ -195,9 +195,8 @@ p {
   background: color-mix(in srgb, var(--accent) 82%, #050607);
   color: var(--button-ink);
 }
-.button span {
-  font-size: 21px;
-  line-height: 1;
+.button .ui-arrow {
+  --arrow-size: 21px;
 }
 .text-link {
   display: inline-flex;
@@ -216,7 +215,7 @@ p {
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
 }
 .text-link-arrow {
-  font-size: 20px;
+  --arrow-size: 20px;
   text-decoration: none;
 }
 .skip-link {

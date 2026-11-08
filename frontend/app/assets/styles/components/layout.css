@@ -180,6 +180,13 @@
 .footer-socials a:hover {
   color: var(--accent);
 }
+.footer-socials a,
+.footer-bottom > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  --arrow-size: 16px;
+}
 .footer-note {
   max-width: 345px;
   font-size: 16px;
@@ -417,7 +424,8 @@
   font-size: 16px;
   line-height: 1.4;
 }
-.submenu-panel a span {
+.submenu-panel a .ui-arrow {
+  --arrow-size: 18px;
   color: var(--nav-color);
   opacity: 0.6;
 }

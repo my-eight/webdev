@@ -34,13 +34,13 @@ const contacts = usePersonContacts(personKey)
             ><span class="contact-method-copy"
               ><span class="contact-method-label">{{ typography('Написать в Telegram') }}</span
               ><span class="contact-method-value">{{ contacts.telegramLabel }}</span></span
-            ><span class="contact-method-arrow" aria-hidden="true">↗</span></a
+            ><UiArrow class="contact-method-arrow" /></a
           >
           <a v-if="contacts.phone" :href="contacts.phone" class="contact-method"
             ><span class="contact-method-copy"
               ><span class="contact-method-label">Позвонить</span
               ><span class="contact-method-value">{{ contacts.phoneLabel }}</span></span
-            ><span class="contact-method-arrow" aria-hidden="true">↗</span></a
+            ><UiArrow class="contact-method-arrow" /></a
           >
           <a
             v-if="contacts.email"
@@ -51,13 +51,13 @@ const contacts = usePersonContacts(personKey)
             ><span class="contact-method-copy"
               ><span class="contact-method-label">{{ typography('Написать на почту') }}</span
               ><span class="contact-method-value">{{ contacts.emailLabel }}</span></span
-            ><span class="contact-method-arrow" aria-hidden="true">↗</span></a
+            ><UiArrow class="contact-method-arrow" /></a
           >
         </div>
         <p v-else class="contact-pending" role="status">{{ typography('Контакты появятся перед запуском сайта') }}</p>
         <a v-if="personKey === 'erin'" href="https://www.behance.net/erinart" class="text-link portfolio-link"
           ><span class="text-link-label">{{ typography('Портфолио на Behance') }}</span
-          ><span class="text-link-arrow" aria-hidden="true">↗</span></a
+          ><UiArrow class="text-link-arrow" /></a
         >
       </div>
     </div>

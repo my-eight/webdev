@@ -6,6 +6,6 @@ defineProps<{ link: NonNullable<SectionDetails['link']> }>()
 <template>
   <NuxtLink :to="link.to" class="text-link section-link" :external="link.to.startsWith('https://')"
     ><span class="text-link-label">{{ typography(link.label) }}</span
-    ><span class="text-link-arrow" aria-hidden="true">↗</span></NuxtLink
+    ><UiArrow class="text-link-arrow" /></NuxtLink
   >
 </template>

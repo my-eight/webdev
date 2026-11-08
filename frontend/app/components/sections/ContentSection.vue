@@ -6,5 +6,6 @@ defineProps<{ section: ItemSection }>()
 <template>
   <SectionsSectionFrame :section="section">
     <SectionsSectionItems :items="section.items" :grid-layout="section.gridLayout" />
+    <SectionsServiceFormats v-if="section.workFormats" :formats="section.workFormats" />
   </SectionsSectionFrame>
 </template>

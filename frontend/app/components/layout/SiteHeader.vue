@@ -158,13 +158,13 @@ onBeforeUnmount(() => {
                 :key="section.id"
                 :to="{ path: item.path, hash: `#${section.id}` }"
                 @click="closeMenu()"
-                >{{ typography(section.label) }} <span aria-hidden="true">↗</span></NuxtLink
+                >{{ typography(section.label) }} <UiArrow /></NuxtLink
               >
             </div>
           </div>
         </div>
         <NuxtLink :to="{ path: route.path, hash: '#contact' }" class="button button-primary button-contact header-contact" @click="closeMenu()"
-          >Обсудить задачу <span aria-hidden="true">↗</span></NuxtLink
+          >Обсудить задачу <UiArrow /></NuxtLink
         >
       </nav>
     </div>

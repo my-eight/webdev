@@ -2,7 +2,7 @@ import { typeTextWithin, finishTypingWithin } from '~/utils/typewriter'
 
 const revealTargets = [
   '.home-section-heading', '.home-approach > h2', '.direction-card', '.home-principles article',
-  '.section-heading', '.section-item', '.process-list > li', '#faq-title', '.faq-layout',
+  '.section-heading', '.section-item', '.service-formats', '.process-list > li', '#faq-title', '.faq-layout',
   '.quiz-heading', '.quiz-shell', '.contact-copy', '.contact-card',
   '.footer-brand', '.footer-note', '.footer-bottom',
 ].join(', ')

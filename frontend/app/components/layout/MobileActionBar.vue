@@ -6,7 +6,7 @@ const isHome = computed(() => (route.path.replace(/\/+$/, '') || '/') === '/')
   <aside class="mobile-action-bar" aria-label="Быстрое действие">
     <NuxtLink :to="{ path: route.path, hash: isHome ? '#directions' : '#contact' }" class="button button-primary">
       {{ typography(isHome ? 'Выбрать направление' : 'Обсудить задачу') }}
-      <span aria-hidden="true">{{ isHome ? '↓' : '↗' }}</span>
+      <UiArrow :direction="isHome ? 'down' : 'up-right'" />
     </NuxtLink>
   </aside>
 </template>

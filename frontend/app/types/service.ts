@@ -19,6 +19,11 @@ export interface ItemSection extends SectionDetails {
   kind: 'rows' | 'split' | 'statement' | 'tags'
   gridLayout?: 'catalog'
   items: ServiceItem[]
+  workFormats?: {
+    id: string
+    items: ServiceItem[]
+    link: NonNullable<SectionDetails['link']>
+  }
 }
 export interface ProcessSection extends SectionDetails {
   kind: 'process'

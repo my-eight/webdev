@@ -18,7 +18,7 @@ export const site = {
           id: 'services',
         },
         {
-          label: 'Стоимость',
+          label: 'Формат и оценка',
           id: 'pricing',
         },
         {

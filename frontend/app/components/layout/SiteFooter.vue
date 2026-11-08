@@ -10,8 +10,8 @@ const contacts = usePersonContacts(personKey)
       <div class="footer-brand">
         <NuxtLink to="/" aria-label="На главную"><UiBrandLogo :name="identity?.name" /></NuxtLink>
         <div class="footer-socials">
-          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener noreferrer">Telegram ↗</a
-          ><a v-if="contacts.email" :href="contacts.email" target="_blank" rel="noopener noreferrer">Почта ↗</a>
+          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener noreferrer">Telegram <UiArrow /></a
+          ><a v-if="contacts.email" :href="contacts.email" target="_blank" rel="noopener noreferrer">Почта <UiArrow /></a>
         </div>
       </div>
       <p class="footer-note">
@@ -27,7 +27,7 @@ const contacts = usePersonContacts(personKey)
           {{ typography(item.label) }}
         </NuxtLink>
       </nav>
-      <a href="#main">Наверх ↑</a>
+      <a href="#main">Наверх <UiArrow direction="up" /></a>
     </div>
   </footer>
 </template>

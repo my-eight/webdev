@@ -13,7 +13,7 @@ useSeoMeta({
     <h1>{{ typography(error.statusCode === 404 ? 'Здесь пока ничего нет' : 'Страница не открылась') }}</h1>
     <p>{{ typography('Вернитесь на главную, чтобы выбрать направление') }}</p>
     <button class="button button-primary" @click="clearError({ redirect: '/' })">
-      {{ typography('На главную') }} <span aria-hidden="true">↗</span>
+      {{ typography('На главную') }} <UiArrow />
     </button>
   </main>
 </template>
