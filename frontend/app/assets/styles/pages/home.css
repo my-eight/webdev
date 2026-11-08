@@ -24,7 +24,7 @@
   color: var(--color-design);
 }
 .home-tagline {
-  margin-top: 18px;
+  margin-top: 6px;
   font-family: var(--font-display);
   font-size: clamp(13px, 2.3vw, 30px);
   line-height: 1.3;
@@ -146,10 +146,6 @@
   }
   .home-hero h1 {
     font-size: clamp(43px, 10.4vw, 76px);
-  }
-  .home-hero .visual-study {
-    width: min(100%, 450px);
-    margin: 5px auto 0;
   }
   .home-lead {
     margin-block: 22px;

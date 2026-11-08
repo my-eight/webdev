@@ -5,9 +5,10 @@
   --color-ink: #f2f5f4;
   --color-muted: #a2aab2;
   --color-line: #252b31;
-  --color-web: #c4f541;
-  --color-stock: #5b9dff;
-  --color-design: #b38aff;
+  --color-web: #c6ff36;
+  --color-stock: #0134ff;
+  --color-design: #fe00ff;
+  --button-ink: #050607;
   --accent: var(--color-web);
   --font-sans: 'Exo 2 Variable', 'Segoe UI', sans-serif;
   --font-display: 'HS Luna Obscura', 'Exo 2 Variable', sans-serif;
@@ -43,6 +44,7 @@
 }
 .theme-stock {
   --accent: var(--color-stock);
+  --button-ink: #f2f5f4;
 }
 .theme-design {
   --accent: var(--color-design);

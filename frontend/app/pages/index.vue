@@ -42,9 +42,7 @@ const directions = [
         </p>
         <a href="#directions" class="button button-primary">Выбрать направление <span aria-hidden="true">↓</span></a>
       </div>
-      <!-- Hero visual temporarily disabled while its replacement is designed
-      <UiVisualStudy theme="home" />
-      -->
+      <UiSamuraiEnsemble />
     </section>
     <UiDirectionRibbon theme="home" />
     </div>

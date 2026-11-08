@@ -44,6 +44,7 @@ for (const path of routes) {
   documents.set(path, html)
   assert.match(html, /<html[^>]*lang="ru"/)
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `Один H1: ${path}`)
+  assert.equal((html.match(/<img\b[^>]*class="samurai-image"/g) || []).length, path === '/' ? 3 : 1, `Портреты самураев: ${path}`)
   assert.ok(html.includes('id="contact"'), `Контактный блок: ${path}`)
   const head = html.match(/<head[^>]*>([\s\S]*?)<\/head>/)?.[1] || ''
   const title = head.match(/<title>([^<]+)<\/title>/)?.[1]
@@ -71,14 +72,16 @@ for (const path of routes) {
   }
   for (const tagMatch of html.matchAll(/<(?:script|link|img)\b[^>]*>/g)) {
     const tag = attributes(tagMatch[0])
-    const target = tag.src || tag.href
-    if (!target || !target.startsWith('/') || target.startsWith('//')) continue
-    const url = new URL(target, 'https://static-check.example')
-    const resource = await fileFor(url.pathname)
-    if (tag.rel === 'stylesheet') {
-      for (const cssUrl of resource.value.toString('utf8').matchAll(/url\(["']?([^\s\)"']+)["']?\)/g)) {
-        if (/^(data:|https?:)/.test(cssUrl[1])) continue
-        await fileFor(new URL(cssUrl[1], url).pathname)
+    const targets = [tag.src || tag.href, ...(tag.srcset?.split(',').map(source => source.trim().split(/\s+/)[0]) || [])]
+    for (const target of targets) {
+      if (!target || !target.startsWith('/') || target.startsWith('//')) continue
+      const url = new URL(target, 'https://static-check.example')
+      const resource = await fileFor(url.pathname)
+      if (tag.rel === 'stylesheet') {
+        for (const cssUrl of resource.value.toString('utf8').matchAll(/url\(["']?([^\s\)"']+)["']?\)/g)) {
+          if (/^(data:|https?:)/.test(cssUrl[1])) continue
+          await fileFor(new URL(cssUrl[1], url).pathname)
+        }
       }
     }
   }

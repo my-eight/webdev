@@ -71,7 +71,7 @@
   border: 1px solid color-mix(in srgb, var(--nav-color) 28%, transparent);
   border-radius: 7px;
   background: color-mix(in srgb, var(--nav-color) 9%, transparent);
-  color: var(--nav-color);
+  color: var(--nav-label, var(--nav-color));
   font-size: 15px;
   font-weight: 600;
   transition:
@@ -103,6 +103,7 @@
 }
 .nav-stock {
   --nav-color: var(--color-stock);
+  --nav-label: color-mix(in srgb, var(--color-stock) 64%, white);
 }
 .nav-design {
   --nav-color: var(--color-design);

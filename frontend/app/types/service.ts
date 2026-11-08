@@ -42,7 +42,6 @@ export interface ServicePageData {
   heading: string
   emphasis: string[]
   lead: string
-  detail: string
   sections: ContentSection[]
   faqs: FaqItem[]
   contact: { title: string; text: string; prompts: string[] }

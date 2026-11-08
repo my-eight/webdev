@@ -1,0 +1,68 @@
+{
+  "development": {
+    "images": [
+      {
+        "path": "images/samurai/development-a95d8f8768-480.webp",
+        "width": 480,
+        "height": 363,
+        "bytes": 33002
+      },
+      {
+        "path": "images/samurai/development-a95d8f8768-800.webp",
+        "width": 800,
+        "height": 604,
+        "bytes": 79474
+      },
+      {
+        "path": "images/samurai/development-a95d8f8768-1200.webp",
+        "width": 1200,
+        "height": 906,
+        "bytes": 180570
+      }
+    ]
+  },
+  "moysklad": {
+    "images": [
+      {
+        "path": "images/samurai/moysklad-62adc91d38-480.webp",
+        "width": 480,
+        "height": 344,
+        "bytes": 47516
+      },
+      {
+        "path": "images/samurai/moysklad-62adc91d38-800.webp",
+        "width": 800,
+        "height": 574,
+        "bytes": 119514
+      },
+      {
+        "path": "images/samurai/moysklad-62adc91d38-1200.webp",
+        "width": 1200,
+        "height": 860,
+        "bytes": 252218
+      }
+    ]
+  },
+  "design": {
+    "images": [
+      {
+        "path": "images/samurai/design-d79a29ec15-480.webp",
+        "width": 480,
+        "height": 510,
+        "bytes": 42216
+      },
+      {
+        "path": "images/samurai/design-d79a29ec15-800.webp",
+        "width": 800,
+        "height": 851,
+        "bytes": 100500
+      },
+      {
+        "path": "images/samurai/design-d79a29ec15-1200.webp",
+        "width": 1200,
+        "height": 1276,
+        "bytes": 224640
+      }
+    ]
+  }
+}
