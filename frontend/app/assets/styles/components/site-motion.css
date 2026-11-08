@@ -10,7 +10,7 @@
   transition: opacity 700ms ease;
   --grid-x: -400px;
   --grid-y: -400px;
-  mask-image: radial-gradient(circle 260px at var(--grid-x) var(--grid-y), #000 0%, #0009 34%, transparent 100%);
+  mask-image: radial-gradient(circle 280px at var(--grid-x) var(--grid-y), #000 0%, #000c 38%, transparent 100%);
 }
 .interactive-grid.is-active {
   opacity: 1;
@@ -19,9 +19,9 @@
 .interactive-grid-lens {
   position: absolute;
   inset: 0;
-  --grid-point-color: color-mix(in srgb, var(--accent) 75%, transparent);
-  --grid-line-color: color-mix(in srgb, var(--accent) 30%, transparent);
-  opacity: 0.65;
+  --grid-point-color: color-mix(in srgb, var(--accent) 95%, transparent);
+  --grid-line-color: color-mix(in srgb, var(--accent) 52%, transparent);
+  opacity: 0.8;
 }
 .theme-home .interactive-grid-lens {
   background-image:
@@ -29,9 +29,9 @@
   background-size: 100% 100%;
   background-position: center top;
   mask-image:
-    radial-gradient(circle at 1px 1px, #000b 2px, transparent 2.5px),
-    linear-gradient(#0005 1px, transparent 1px),
-    linear-gradient(90deg, #0005 1px, transparent 1px);
+    radial-gradient(circle at 1px 1px, #000 2px, transparent 2.5px),
+    linear-gradient(#0008 1px, transparent 1px),
+    linear-gradient(90deg, #0008 1px, transparent 1px);
   mask-composite: add;
   mask-size: var(--grid-size) var(--grid-size);
   mask-position: center var(--grid-offset-y, 0px);
@@ -42,8 +42,8 @@
   }
 }
 @keyframes grid-shimmer {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 0.8; }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.95; }
 }
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .interactive-grid { display: none; }
