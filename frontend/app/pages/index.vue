@@ -5,7 +5,7 @@ usePageSeo({ title: site.name, description: site.description, path: '/' })
 const directions = [
   {
     theme: 'web',
-    title: 'Веб-разработка',
+    title: 'Разработка',
     to: '/web-development',
     description: 'Сайты, магазины и веб-приложения — разработка, доработки и интеграции',
     symbol: '</>',
@@ -28,6 +28,7 @@ const directions = [
 </script>
 <template>
   <div class="home-page">
+    <div class="first-screen">
     <section class="home-hero container" aria-labelledby="home-title">
       <div class="home-hero-copy">
         <h1 id="home-title">
@@ -45,6 +46,8 @@ const directions = [
       <UiVisualStudy theme="home" />
       -->
     </section>
+    <UiDirectionRibbon theme="home" />
+    </div>
     <section id="directions" class="home-directions container" aria-labelledby="directions-title">
       <div class="home-section-heading">
         <h2 id="directions-title">{{ 'Ваша задача ' }}<br />Нужное решение</h2>

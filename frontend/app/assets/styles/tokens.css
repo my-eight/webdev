@@ -18,10 +18,11 @@
   --small-copy-size: 15px;
   --card-title-size: 20px;
   --section-title-size: clamp(28px, 3.3vw, 44px);
-  --page-width: 1320px;
+  --page-width: 1440px;
+  --ribbon-height: 52px;
   --header-height: 88px;
   --mobile-action-space: 0px;
-  --gutter: clamp(20px, 4.2vw, 72px);
+  --gutter: clamp(20px, 3.2vw, 64px);
   --space-section: clamp(48px, 5vw, 76px);
   --ease: 200ms ease;
 }

@@ -29,7 +29,7 @@ const cards = [
   },
   {
     file: 'web-development',
-    label: 'Слава · Веб-разработка',
+    label: 'Слава · Разработка',
     lines: ['Сайты.', 'Веб-сервисы.'],
     detail: 'Разработка · Доработки · Интеграции',
     accent: palette.web,

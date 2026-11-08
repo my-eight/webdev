@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <NuxtLink :to="{ path: route.path, hash: '#contact' }" class="header-contact" @click="closeMenu()"
+        <NuxtLink :to="{ path: route.path, hash: '#contact' }" class="button button-primary header-contact" @click="closeMenu()"
           >Обсудить задачу <span aria-hidden="true">↗</span></NuxtLink
         >
       </nav>
