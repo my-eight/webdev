@@ -291,6 +291,7 @@
   }
   .header-contact {
     margin: 8px 0 0;
+    inline-size: 100%;
     min-height: var(--control-height);
     font-size: 16px;
   }

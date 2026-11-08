@@ -13,7 +13,7 @@ defineProps<{ page: ServicePageData }>()
         <p class="hero-lead">{{ typography(page.lead) }}</p>
       </div>
       <div class="hero-actions">
-        <a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a
+        <a href="#contact" class="button button-primary button-contact">Обсудить задачу <span aria-hidden="true">↗</span></a
         >
       </div>
     </div>

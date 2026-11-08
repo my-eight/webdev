@@ -181,6 +181,11 @@ p {
   color: var(--button-ink);
   border-color: var(--accent);
 }
+.button-contact {
+  inline-size: 232px;
+  max-inline-size: 100%;
+  flex: 0 0 auto;
+}
 .button-primary:hover {
   background: var(--color-ink);
   color: #050607;

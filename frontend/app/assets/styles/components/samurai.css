@@ -19,7 +19,7 @@
 .service-hero:has(.samurai-portrait) .hero-title-label { font-size: clamp(24px, 9.8cqi, 108px); margin-bottom: 12px; }
 .service-hero:has(.samurai-portrait) .hero-title-message { font-size: clamp(15px, 4.1cqi, 42px); }
 .service-hero:has(.samurai-portrait) .hero-description { margin-top: clamp(28px, 6dvh, 64px); max-width: 48ch; width: 69%; }
-.service-hero:has(.samurai-portrait) .hero-actions { margin-top: auto; padding-top: 40px; }
+.service-hero:has(.samurai-portrait) .hero-actions { margin-top: 28px; padding-top: 0; }
 .home-hero-copy { position: relative; z-index: 3; width: 58%; align-self: center; }
 .home-hero:has(.samurai-ensemble) h1 { display: grid; font-size: clamp(32px, 4.8vw, 78px); }
 .home-hero:has(.samurai-ensemble) .home-tagline { font-size: clamp(14px, 1.7vw, 26px); }
