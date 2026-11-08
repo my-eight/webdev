@@ -17,8 +17,8 @@
       calc(12px + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));
     background: rgb(5 6 7 / 88%);
     border-top: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
-    backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
     box-shadow: 0 -8px 30px #0005;
   }
   .mobile-action-bar .button {

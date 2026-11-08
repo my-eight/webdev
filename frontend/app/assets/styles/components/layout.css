@@ -11,8 +11,9 @@
 .site-header.is-scrolled,
 .site-header.is-menu-open {
   background: rgb(9 12 16 / 70%);
-  backdrop-filter: blur(22px) saturate(145%);
+  /* The standard property must follow the prefixed fallback in production CSS. */
   -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
   box-shadow: 0 8px 40px #0005;
 }
 .header-inner {
@@ -291,6 +292,7 @@
     overscroll-behavior: contain;
     border-bottom: 1px solid var(--color-line);
     background: rgb(7 10 14 / 96%);
+    -webkit-backdrop-filter: blur(22px);
     backdrop-filter: blur(22px);
   }
   .main-navigation.is-open {
@@ -360,8 +362,8 @@
 }
 .site-header.is-sections-open {
   background: rgb(9 12 16 / 82%);
-  backdrop-filter: blur(22px) saturate(145%);
   -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
 }
 .nav-direction {
   position: relative;

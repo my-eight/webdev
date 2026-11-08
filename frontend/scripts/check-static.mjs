@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { assertQuiz } from './assert-quiz.mjs'
 import { assertFaq } from './assert-faq.mjs'
+import { assertGlassCss } from './assert-glass-css.mjs'
 import { readFile, access, readdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { resolve, relative, sep } from 'node:path'
@@ -131,10 +132,12 @@ if (indexable) {
   for (const path of routes) assert.ok(sitemap.includes(`<loc>${origin}${publicRoute(path)}</loc>`))
 }
 const artifactFiles = await readdir(output, { recursive: true })
+const compiledCss = await Promise.all(artifactFiles.filter(file => file.endsWith('.css')).map(file => readFile(resolve(output, file), 'utf8')))
+assertGlassCss(compiledCss.join('\n'))
 assert.ok(
   !artifactFiles.some((file) => /(^|[\\/])(?:node_modules|\.git|\.env)([\\/]|$)|\.md$/i.test(file)),
   'В артефакте не должно быть исходников, настроек или Markdown',
 )
 console.log(
-  `Проверено: 4 готовые HTML-страницы, метаданные, JSON-LD, ссылки и якоря, ресурсы с базовым путём ${prefix}, robots, 404 и отсутствие внутренних документов.`,
+  `Проверено: 4 готовые HTML-страницы, метаданные, JSON-LD, ссылки и якоря, ресурсы с базовым путём ${prefix}, стекло в готовом CSS, robots, 404 и отсутствие внутренних документов.`,
 )
