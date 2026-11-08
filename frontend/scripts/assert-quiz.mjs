@@ -12,7 +12,7 @@ export function assertQuiz(html, path) {
   assert.match(quiz, /<input\b[^>]*type="(?:radio|checkbox)"/, 'Native accessible choices')
   assert.ok(!/<form\b[^>]*(?:action|method)=/.test(quiz), 'No external form submission')
   const hero = html.indexOf('id="service-title"')
-  const ribbon = html.indexOf('class="direction-ribbon')
+  const ribbon = html.indexOf('class="neon-divider')
   const offset = html.indexOf('id="quiz"')
   const faq = html.indexOf('id="faq"')
   assert.ok(hero >= 0 && ribbon > hero && faq > ribbon && offset > faq, 'Quiz follows FAQ after the page content')

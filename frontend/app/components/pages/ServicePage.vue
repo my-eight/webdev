@@ -22,7 +22,7 @@ usePageSeo({
   <div class="service-page" :class="`theme-${page.theme}`">
     <div class="first-screen">
       <SectionsHeroSection :page="page" />
-      <UiDirectionRibbon :theme="page.theme" />
+      <UiNeonDivider :theme="page.theme" />
     </div>
     <template v-for="section in page.sections" :key="section.id">
       <SectionsWorkProcess v-if="section.kind === 'process'" :section="section" />

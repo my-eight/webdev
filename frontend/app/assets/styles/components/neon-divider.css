@@ -1,0 +1,30 @@
+.neon-divider {
+  position: absolute;
+  z-index: 4;
+  inset: auto 0 var(--lamp-offset);
+  height: 1px;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.neon-divider i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 48%, transparent), 0 0 18px color-mix(in srgb, var(--accent) 18%, transparent);
+  opacity: .82;
+  animation: neon-lamp 13.7s linear infinite paused;
+}
+.neon-home i { background: linear-gradient(90deg, var(--color-web), var(--color-stock) 53%, var(--color-design)); }
+.neon-stock i { animation-delay: -4.3s; }
+.neon-design i { animation-delay: -8.1s; }
+.neon-divider.is-playing i { animation-play-state: running; }
+/* Long stable light with occasional brief dips, no rapid high-contrast strobe */
+@keyframes neon-lamp {
+  0%, 32%, 34%, 76%, 79%, 100% { opacity: .82; }
+  32.8% { opacity: .38; }
+  33.3% { opacity: .68; }
+  76.6% { opacity: .43; }
+  77.3% { opacity: .76; }
+  78% { opacity: .5; }
+}
+@media (prefers-reduced-motion: reduce), print { .neon-divider i { animation: none; opacity: .82; } }

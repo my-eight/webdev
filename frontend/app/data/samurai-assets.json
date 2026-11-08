@@ -2,66 +2,66 @@
   "development": {
     "images": [
       {
-        "path": "images/samurai/development-a95d8f8768-480.webp",
+        "path": "images/samurai/development-9db9d0c484-480.webp",
         "width": 480,
-        "height": 363,
-        "bytes": 33002
+        "height": 439,
+        "bytes": 113432
       },
       {
-        "path": "images/samurai/development-a95d8f8768-800.webp",
+        "path": "images/samurai/development-9db9d0c484-800.webp",
         "width": 800,
-        "height": 604,
-        "bytes": 79474
+        "height": 731,
+        "bytes": 294976
       },
       {
-        "path": "images/samurai/development-a95d8f8768-1200.webp",
-        "width": 1200,
-        "height": 906,
-        "bytes": 180570
+        "path": "images/samurai/development-9db9d0c484-1312.webp",
+        "width": 1312,
+        "height": 1199,
+        "bytes": 769026
       }
     ]
   },
   "moysklad": {
     "images": [
       {
-        "path": "images/samurai/moysklad-62adc91d38-480.webp",
+        "path": "images/samurai/moysklad-95a52ecdae-480.webp",
         "width": 480,
-        "height": 344,
-        "bytes": 47516
+        "height": 439,
+        "bytes": 112950
       },
       {
-        "path": "images/samurai/moysklad-62adc91d38-800.webp",
+        "path": "images/samurai/moysklad-95a52ecdae-800.webp",
         "width": 800,
-        "height": 574,
-        "bytes": 119514
+        "height": 731,
+        "bytes": 314632
       },
       {
-        "path": "images/samurai/moysklad-62adc91d38-1200.webp",
-        "width": 1200,
-        "height": 860,
-        "bytes": 252218
+        "path": "images/samurai/moysklad-95a52ecdae-1312.webp",
+        "width": 1312,
+        "height": 1199,
+        "bytes": 794886
       }
     ]
   },
   "design": {
     "images": [
       {
-        "path": "images/samurai/design-d79a29ec15-480.webp",
+        "path": "images/samurai/design-730568d456-480.webp",
         "width": 480,
-        "height": 510,
-        "bytes": 42216
+        "height": 439,
+        "bytes": 112194
       },
       {
-        "path": "images/samurai/design-d79a29ec15-800.webp",
+        "path": "images/samurai/design-730568d456-800.webp",
         "width": 800,
-        "height": 851,
-        "bytes": 100500
+        "height": 731,
+        "bytes": 293544
       },
       {
-        "path": "images/samurai/design-d79a29ec15-1200.webp",
-        "width": 1200,
-        "height": 1276,
-        "bytes": 224640
+        "path": "images/samurai/design-730568d456-1312.webp",
+        "width": 1312,
+        "height": 1199,
+        "bytes": 737656
       }
     ]
   }

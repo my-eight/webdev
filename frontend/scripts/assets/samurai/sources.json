@@ -1,0 +1,12 @@
+{
+  "source": "User-supplied original PNG artwork, 2026-11-08",
+  "generation": "No image generation or repainting performed for this revision",
+  "reference": "User-supplied Frame 427321157.png hero layout",
+  "originals": {
+    "development": "Glossy Black Cyberpunk Samurai with 侍 Mark.png",
+    "moysklad": "Monochrome Cyber Samurai Portrait.png",
+    "design": "Monochrome Cyberpunk Samurai Woman.png"
+  },
+  "processing": "Unmodified source PNGs retained here; lossless WebP at original 1312px plus responsive 800px and 480px derivatives",
+  "lighting": "Separate CSS/SVG contour, existing shoulder-mark overlay and hover-only hat glint; no transform or pointer tracking"
+}

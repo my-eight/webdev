@@ -1,84 +1,43 @@
 <script setup lang="ts">
 import type { Direction } from '~/types/service'
 import portraits from '~/data/samurai-assets.json'
-
 const props = defineProps<{ theme: Direction; compact?: boolean }>()
-const root = ref<HTMLElement | null>(null)
-const playing = ref(false)
+const id = useId().replaceAll(':', '')
 const base = useRuntimeConfig().app.baseURL
-const names = { web: 'development', stock: 'moysklad', design: 'design' }
-const portrait = computed(() => portraits[names[props.theme] as keyof typeof portraits].images)
+const names = { web: 'development', stock: 'moysklad', design: 'design' } as const
+const portrait = computed(() => portraits[names[props.theme]].images)
 const largest = computed(() => portrait.value[portrait.value.length - 1]!)
-const fallback = computed(() => `${base}${portrait.value[1]!.path}`)
+const fallback = computed(() => `${base}${largest.value.path}`)
 const sources = computed(() => portrait.value.map(image => `${base}${image.path} ${image.width}w`).join(', '))
-const sizes = computed(() => props.compact
-  ? '(max-width: 760px) 60vw, 420px'
-  : '(max-width: 760px) 95vw, (max-width: 1200px) 55vw, 720px')
-
-onMounted(() => {
-  const element = root.value
-  if (!element) return
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
-  const pointer = window.matchMedia('(hover: hover) and (pointer: fine)')
-  let inView = false
-  let frame = 0
-  function reset() {
-    cancelAnimationFrame(frame)
-    frame = 0
-    element!.style.removeProperty('--samurai-x')
-    element!.style.removeProperty('--samurai-y')
-    element!.style.removeProperty('--samurai-turn')
-  }
-  function sync() {
-    playing.value = inView && !motion.matches && !document.hidden
-    if (!playing.value || !pointer.matches) reset()
-  }
-  function move(event: PointerEvent) {
-    if (!playing.value || !pointer.matches || event.pointerType !== 'mouse') return
-    const rect = element!.getBoundingClientRect()
-    const x = Math.max(-1, Math.min(1, (event.clientX - rect.left) / rect.width * 2 - 1))
-    const y = Math.max(-1, Math.min(1, (event.clientY - rect.top) / rect.height * 2 - 1))
-    cancelAnimationFrame(frame)
-    frame = requestAnimationFrame(() => {
-      element!.style.setProperty('--samurai-x', `${x * 7}px`)
-      element!.style.setProperty('--samurai-y', `${y * 4}px`)
-      element!.style.setProperty('--samurai-turn', `${x * 0.7}deg`)
-      frame = 0
-    })
-  }
-  const observer = new IntersectionObserver(([entry]) => {
-    inView = entry?.isIntersecting ?? false
-    sync()
-  })
-  observer.observe(element)
-  element.addEventListener('pointermove', move)
-  element.addEventListener('pointerleave', reset)
-  motion.addEventListener('change', sync)
-  pointer.addEventListener('change', sync)
-  document.addEventListener('visibilitychange', sync)
-  onBeforeUnmount(() => {
-    observer.disconnect()
-    reset()
-    element.removeEventListener('pointermove', move)
-    element.removeEventListener('pointerleave', reset)
-    motion.removeEventListener('change', sync)
-    pointer.removeEventListener('change', sync)
-    document.removeEventListener('visibilitychange', sync)
-  })
-})
+const sizes = computed(() => props.compact ? '(max-width: 760px) 65vw, 500px' : '(max-width: 760px) 100vw, 62vw')
+// Restrict illumination to the existing printed shoulder mark, preserving the white collar
+const marks = { web: '59,60 68,60 68,83 59,83', stock: '79,70 88,70 88,91 79,91', design: '73,69 82,69 82,90 73,90' }
 </script>
 <template>
-  <div ref="root" class="samurai-portrait" :class="[`samurai-${theme}`, `theme-${theme}`, { 'is-playing': playing }]"
-    :style="{ '--portrait-ratio': largest.width / largest.height }" aria-hidden="true">
+  <div class="samurai-portrait" :class="[`samurai-${theme}`, `theme-${theme}`]" aria-hidden="true">
     <div class="samurai-aura" />
-    <div class="samurai-cutout">
+    <div class="samurai-cutout" :style="{ '--portrait-ratio': largest.width / largest.height }">
       <img class="samurai-image" :src="fallback" :srcset="sources" :sizes="sizes"
         :width="largest.width" :height="largest.height" alt="" decoding="async" :fetchpriority="compact ? 'auto' : 'high'" />
-      <img v-for="surface in ['hat', 'detail']" :key="surface"
-        class="samurai-reflection" :class="`samurai-reflection-${surface}`"
-        :src="fallback" :srcset="sources" :sizes="sizes" :width="largest.width" :height="largest.height" alt="" decoding="async" />
+      <svg class="samurai-mark" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+        <defs>
+          <clipPath :id="`${id}-mark`"><polygon :points="marks[theme]" /></clipPath>
+          <filter :id="`${id}-ink`" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .2126 .7152 .0722 0 0" />
+            <feComponentTransfer><feFuncA type="linear" slope="12" intercept="-4.8" /></feComponentTransfer>
+            <feComposite in2="SourceAlpha" operator="in" />
+          </filter>
+          <mask :id="`${id}-letters`" mask-type="alpha">
+            <image :href="fallback" width="100" height="100" preserveAspectRatio="none" :filter="`url(#${id}-ink)`" />
+          </mask>
+        </defs>
+        <g :clip-path="`url(#${id}-mark)`">
+          <rect width="100" height="100" fill="currentColor" :mask="`url(#${id}-letters)`" />
+        </g>
+      </svg>
+      <img class="samurai-reflection" :src="fallback" :srcset="sources" :sizes="sizes"
+        :width="largest.width" :height="largest.height" alt="" decoding="async" />
     </div>
-    <div class="samurai-dust"><i /><i /><i /><i /></div>
   </div>
 </template>
 <style src="~/assets/styles/components/samurai.css" />

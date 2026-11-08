@@ -19,17 +19,19 @@
   --small-copy-size: 15px;
   --card-title-size: 20px;
   --section-title-size: clamp(28px, 3.3vw, 44px);
-  --page-width: 1440px;
-  --ribbon-height: 52px;
-  --header-height: 88px;
+  --page-width: 1600px;
+  --lamp-offset: clamp(24px, 6.4dvh, 60px);
+  --header-height: 96px;
   --mobile-action-space: 0px;
-  --gutter: clamp(20px, 3.2vw, 64px);
+  --gutter: clamp(28px, 7.8vw, 148px);
   --space-section: clamp(48px, 5vw, 76px);
   --ease: 200ms ease;
 }
 @media (max-width: 760px) {
   :root {
     --header-height: 72px;
+    --gutter: 20px;
+    --lamp-offset: 16px;
     --section-title-size: clamp(26px, 6.2vw, 38px);
     --card-title-size: 18px;
   }

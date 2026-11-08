@@ -60,7 +60,7 @@
 .main-navigation {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(14px, 1.5vw, 30px);
 }
 .nav-link {
   position: relative;
@@ -139,7 +139,7 @@
   }
 }
 .header-contact {
-  margin-left: 16px;
+  margin-left: clamp(12px, 1.2vw, 24px);
 }
 .menu-toggle {
   display: none;

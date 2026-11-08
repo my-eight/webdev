@@ -45,6 +45,8 @@ for (const path of routes) {
   assert.match(html, /<html[^>]*lang="ru"/)
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `Один H1: ${path}`)
   assert.equal((html.match(/<img\b[^>]*class="samurai-image"/g) || []).length, path === '/' ? 3 : 1, `Портреты самураев: ${path}`)
+  assert.equal((html.match(/class="neon-divider\b/g) || []).length, 1, `Одна световая линия: ${path}`)
+  assert.ok(!html.includes('class="direction-ribbon'), `Старая бегущая полоса удалена: ${path}`)
   assert.ok(html.includes('id="contact"'), `Контактный блок: ${path}`)
   const head = html.match(/<head[^>]*>([\s\S]*?)<\/head>/)?.[1] || ''
   const title = head.match(/<title>([^<]+)<\/title>/)?.[1]

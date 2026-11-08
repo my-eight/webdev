@@ -44,7 +44,7 @@ const directions = [
       </div>
       <UiSamuraiEnsemble />
     </section>
-    <UiDirectionRibbon theme="home" />
+    <UiNeonDivider theme="home" />
     </div>
     <section id="directions" class="home-directions container" aria-labelledby="directions-title">
       <div class="home-section-heading">

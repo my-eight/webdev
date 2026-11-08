@@ -101,8 +101,9 @@ p {
   margin-inline: auto;
 }
 .first-screen {
+  position: relative;
   display: grid;
-  grid-template-rows: minmax(min-content, 1fr) var(--ribbon-height);
+  grid-template-rows: minmax(min-content, 1fr);
   min-height: calc(100svh - var(--header-height) - var(--mobile-action-space));
   min-height: calc(100dvh - var(--header-height) - var(--mobile-action-space));
 }
@@ -114,6 +115,7 @@ p {
 }
 .site-shell {
   --grid-size: 160px;
+  --grid-origin-y: calc(100dvh - var(--mobile-action-space) - var(--lamp-offset) - 1px);
   isolation: isolate;
   position: relative;
   min-height: 100vh;
@@ -133,7 +135,7 @@ p {
     linear-gradient(var(--grid-line-color, color-mix(in srgb, var(--accent) 7%, transparent)) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line-color, color-mix(in srgb, var(--accent) 7%, transparent)) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
-  background-position: center var(--grid-offset-y, 0px);
+  background-position: center calc(var(--grid-origin-y) + var(--grid-offset-y, 0px));
 }
 .site-shell.theme-home {
   background:
