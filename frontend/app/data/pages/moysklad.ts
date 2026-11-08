@@ -11,10 +11,6 @@ export const moysklad: ServicePageData = {
   emphasis: ['Порядок', 'в процессах'],
   lead: 'Я Слава — внедряю МойСклад и автоматизирую процессы бизнеса',
   detail: 'Настройки, интеграции, скрипты и обучение — с нуля или в работающем аккаунте',
-  secondary: {
-    label: 'С чем могу помочь',
-    to: '#services',
-  },
   sections: [
     {
       id: 'situation',

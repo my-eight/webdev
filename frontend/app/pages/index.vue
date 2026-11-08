@@ -32,15 +32,18 @@ const directions = [
       <div class="home-hero-copy">
         <h1 id="home-title">
           <span class="home-word-web">{{ 'Сайты ' }}</span
-          ><br /><span class="home-word-stock">{{ 'Системы ' }}</span
-          ><br /><span class="home-word-design">Дизайн</span>
+          ><span class="home-word-stock">{{ 'Системы ' }}</span
+          ><span class="home-word-design">Дизайн</span>
         </h1>
+        <p class="home-tagline">{{ typography('Технологии и характер') }}</p>
         <p class="home-lead">
-          {{ typography('Технологии и визуальный характер для вашего бизнеса и его следующего шага') }}
+          {{ typography('Для вашего бизнеса и его следующего шага') }}
         </p>
         <a href="#directions" class="button button-primary">Выбрать направление <span aria-hidden="true">↓</span></a>
       </div>
+      <!-- Hero visual temporarily disabled while its replacement is designed
       <UiVisualStudy theme="home" />
+      -->
     </section>
     <section id="directions" class="home-directions container" aria-labelledby="directions-title">
       <div class="home-section-heading">

@@ -11,10 +11,6 @@ export const design: ServicePageData = {
   emphasis: ['Характер', 'в деталях'],
   lead: 'Я Эрин — создаю визуальный образ брендов, продуктов и событий',
   detail: 'Айдентика, упаковка, веб-дизайн и мерч — от идеи до готовых материалов',
-  secondary: {
-    label: 'Посмотреть работы',
-    to: '#projects',
-  },
   sections: [
     {
       id: 'process',

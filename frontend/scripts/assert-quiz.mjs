@@ -14,5 +14,6 @@ export function assertQuiz(html, path) {
   const hero = html.indexOf('id="service-title"')
   const ribbon = html.indexOf('class="direction-ribbon')
   const offset = html.indexOf('id="quiz"')
-  assert.ok(hero >= 0 && ribbon > hero && offset > ribbon, 'Quiz follows hero and animated ribbon')
+  const faq = html.indexOf('id="faq"')
+  assert.ok(hero >= 0 && ribbon > hero && faq > ribbon && offset > faq, 'Quiz follows FAQ after the page content')
 }

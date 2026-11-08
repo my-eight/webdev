@@ -10,10 +10,10 @@
 }
 .site-header.is-scrolled,
 .site-header.is-menu-open {
-  background: rgb(9 12 16 / 70%);
+  background: rgb(9 12 16 / 48%);
   /* The standard property must follow the prefixed fallback in production CSS. */
-  -webkit-backdrop-filter: blur(22px) saturate(145%);
-  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
   box-shadow: 0 8px 40px #0005;
 }
 .header-inner {
@@ -64,7 +64,9 @@
 .nav-link {
   position: relative;
   overflow: hidden;
-  padding: 11px 14px;
+  padding: 8px 14px;
+  min-height: var(--control-height);
+  line-height: 1.25;
   border: 1px solid color-mix(in srgb, var(--nav-color) 28%, transparent);
   border-radius: 7px;
   background: color-mix(in srgb, var(--nav-color) 9%, transparent);
@@ -139,8 +141,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 12px 18px;
-  min-height: 46px;
+  padding: 8px 18px;
+  min-height: var(--control-height);
+  line-height: 1.25;
   margin-left: 16px;
   background: var(--accent);
   color: #050607;
@@ -247,8 +250,8 @@
 }
 @media (max-width: 1200px) {
   .brand-symbol {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
   .brand-letters {
     font-size: 23px;
@@ -263,15 +266,16 @@
     gap: 8px;
   }
   .theme-home .wordmark .brand-symbol {
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
   }
   .menu-toggle {
     display: flex;
     align-items: center;
     gap: 18px;
-    min-height: 42px;
-    padding: 8px 14px;
+    min-height: var(--control-height);
+    padding: 4px 14px;
+    line-height: 1.25;
     border: 1px solid #ffffff24;
     border-radius: 6px;
     background: #ffffff08;
@@ -292,8 +296,8 @@
     overscroll-behavior: contain;
     border-bottom: 1px solid var(--color-line);
     background: rgb(7 10 14 / 96%);
-    -webkit-backdrop-filter: blur(22px);
-    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
   }
   .main-navigation.is-open {
     display: flex;
@@ -302,12 +306,12 @@
     gap: 8px;
   }
   .nav-link {
-    padding: 14px;
+    padding: 8px 14px;
     font-size: 15px;
   }
   .header-contact {
     margin: 8px 0 0;
-    min-height: 52px;
+    min-height: var(--control-height);
     font-size: 16px;
   }
 }
@@ -351,8 +355,8 @@
     gap: 6px;
   }
   .theme-home .wordmark .brand-symbol {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
   }
   .menu-toggle {
     gap: 10px;
@@ -361,9 +365,9 @@
   }
 }
 .site-header.is-sections-open {
-  background: rgb(9 12 16 / 82%);
-  -webkit-backdrop-filter: blur(22px) saturate(145%);
-  backdrop-filter: blur(22px) saturate(145%);
+  background: rgb(9 12 16 / 58%);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
 }
 .nav-direction {
   position: relative;
@@ -371,7 +375,8 @@
   display: flex;
 }
 .nav-direction .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   flex: 1;
   padding-right: 35px;
 }
@@ -449,10 +454,10 @@
   }
   .nav-direction .nav-link {
     padding-right: 50px;
-    min-height: 52px;
+    min-height: var(--control-height);
   }
   .nav-disclosure {
-    top: 9px;
+    top: 3px;
     right: 8px;
     transform: none;
     width: 34px;

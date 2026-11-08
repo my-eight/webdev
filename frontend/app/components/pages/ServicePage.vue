@@ -22,7 +22,6 @@ usePageSeo({
   <div class="service-page" :class="`theme-${page.theme}`">
     <SectionsHeroSection :page="page" />
     <UiDirectionRibbon :theme="page.theme" />
-    <ProjectQuiz :key="page.theme" :theme="page.theme" />
     <template v-for="section in page.sections" :key="section.id">
       <SectionsWorkProcess v-if="section.kind === 'process'" :section="section" />
       <SectionsPricingSection v-else-if="section.kind === 'pricing'" :section="section" />
@@ -30,6 +29,7 @@ usePageSeo({
       <SectionsContentSection v-else :section="section" />
     </template>
     <SectionsFaqSection :items="page.faqs" />
+    <ProjectQuiz :key="page.theme" :theme="page.theme" />
     <ContactSection
       :person="page.person"
       :title="page.contact.title"

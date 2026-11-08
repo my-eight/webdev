@@ -23,11 +23,12 @@
   }
   .mobile-action-bar .button {
     width: 100%;
-    height: 54px;
+    height: var(--control-height);
     gap: 16px;
     line-height: 1.25;
   }
   .service-hero .hero-actions > .button-primary,
+  .service-hero .hero-actions,
   .home-hero-copy > .button-primary {
     display: none;
   }

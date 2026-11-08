@@ -7,9 +7,7 @@ defineProps<{ page: ServicePageData }>()
     <div class="hero-copy">
       <h1 id="service-title">
         <span class="hero-title-label">{{ typography(page.heading) + ' ' }}</span>
-        <em class="hero-title-message">
-          <span v-for="(line, index) in page.emphasis" :key="index" class="hero-title-line">{{ typography(line) + ' ' }}</span>
-        </em>
+        <span class="hero-title-message">{{ typography(page.emphasis.join(' ')) }}</span>
       </h1>
       <div class="hero-description">
         <p class="hero-lead">{{ typography(page.lead) }}</p>
@@ -17,12 +15,11 @@ defineProps<{ page: ServicePageData }>()
       </div>
       <div class="hero-actions">
         <a href="#contact" class="button button-primary">Обсудить задачу <span aria-hidden="true">↗</span></a
-        ><a :href="page.secondary.to" class="text-link"
-          ><span class="text-link-label">{{ typography(page.secondary.label) }}</span
-          ><span class="text-link-arrow" aria-hidden="true">↓</span></a
         >
       </div>
     </div>
+    <!-- Hero visual temporarily disabled while its replacement is designed
     <UiVisualStudy :theme="page.theme" />
+    -->
   </section>
 </template>

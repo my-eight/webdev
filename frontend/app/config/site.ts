@@ -9,7 +9,6 @@ export const site = {
       short: 'Разработка',
       theme: 'web',
       sections: [
-        { label: 'Мини-квиз', id: 'quiz' },
         {
           label: 'Услуги и интеграции',
           id: 'services',
@@ -26,6 +25,7 @@ export const site = {
           label: 'Вопросы',
           id: 'faq',
         },
+        { label: 'Мини-квиз', id: 'quiz' },
       ],
     },
     {
@@ -34,7 +34,6 @@ export const site = {
       short: 'МойСклад',
       theme: 'stock',
       sections: [
-        { label: 'Мини-квиз', id: 'quiz' },
         {
           label: 'Ваша ситуация',
           id: 'situation',
@@ -59,6 +58,7 @@ export const site = {
           label: 'Вопросы',
           id: 'faq',
         },
+        { label: 'Мини-квиз', id: 'quiz' },
       ],
     },
     {
@@ -67,7 +67,6 @@ export const site = {
       short: 'Дизайн',
       theme: 'design',
       sections: [
-        { label: 'Мини-квиз', id: 'quiz' },
         {
           label: 'Процесс',
           id: 'process',
@@ -92,6 +91,7 @@ export const site = {
           label: 'Вопросы',
           id: 'faq',
         },
+        { label: 'Мини-квиз', id: 'quiz' },
       ],
     },
   ],

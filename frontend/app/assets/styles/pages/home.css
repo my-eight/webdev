@@ -1,13 +1,16 @@
 .home-hero {
   display: grid;
-  grid-template-columns: 1.12fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  min-height: min(740px, calc(100svh - var(--header-height)));
+  min-height: 440px;
   padding-block: 65px 70px;
 }
 .home-hero h1 {
-  font-size: clamp(52px, 6.1vw, 92px);
+  font-size: clamp(30px, 4vw, 64px);
+  display: flex;
+  gap: 0.3em;
+  flex-wrap: wrap;
   line-height: 1.04;
   letter-spacing: -0.025em;
 }
@@ -20,12 +23,19 @@
 .home-word-design {
   color: var(--color-design);
 }
+.home-tagline {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(13px, 2.3vw, 30px);
+  line-height: 1.3;
+  white-space: nowrap;
+}
 .home-lead {
   max-width: 40ch;
   margin-block: 32px;
   font-size: var(--hero-copy-size);
   color: var(--color-ink);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .home-section-heading {
   display: flex;
@@ -120,9 +130,6 @@
   max-width: 330px;
 }
 @media (max-width: 1000px) {
-  .home-hero h1 {
-    font-size: clamp(36px, 5.8vw, 58px);
-  }
   .direction-card {
     padding: 24px 20px;
   }
@@ -162,7 +169,7 @@
   .direction-symbol {
     height: auto;
     grid-row: 1;
-    font-size: 34px;
+    font-size: 26px;
   }
   .direction-card h3 {
     margin: 0;
@@ -204,7 +211,7 @@
     font-size: 35px;
   }
   .direction-card {
-    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px 16px;
     padding: 22px 20px;
   }

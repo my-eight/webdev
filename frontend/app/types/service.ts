@@ -43,7 +43,6 @@ export interface ServicePageData {
   emphasis: string[]
   lead: string
   detail: string
-  secondary: { label: string; to: string }
   sections: ContentSection[]
   faqs: FaqItem[]
   contact: { title: string; text: string; prompts: string[] }
